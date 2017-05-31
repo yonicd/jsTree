@@ -1,0 +1,18 @@
+dependencies:
+  - name: fontawesome
+    version: 3.2.1
+    src: htmlwidgets/lib/font-awesome
+    stylesheet: css/font-awesome.min.css
+  - name: jquery
+    version: 3.2.1
+    src: htmlwidgets/lib/jquery
+    script: jquery.min.js
+  - name: require
+    version: 2.3.3
+    src: htmlwidgets/lib/require
+    script: require.js
+  - name: jstree
+    version: 3.3.4
+    src: htmlwidgets/lib/jsTree
+    script: jstree.min.js
+    stylesheet: themes/default/style.min.css
