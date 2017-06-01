@@ -7568,7 +7568,7 @@
 				};
 			}
 			search = function (text) {
-				text = options.caseSensitive ? text : text.toString().toLowerCase();
+				text = options.caseSensitive ? text : text.toLowerCase();
 				if(pattern === text || text.indexOf(pattern) !== -1) {
 					return {
 						isMatch: true,

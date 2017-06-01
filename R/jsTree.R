@@ -13,7 +13,7 @@ jsTree <- function(obj, width = NULL, height = NULL, elementId = NULL) {
   
   # forward options using x
   x = list(
-    data=jsonlite::toJSON(obj.in)
+    data=jsonlite::toJSON(obj.in,auto_unbox = TRUE)
   )
 
   # create widget
