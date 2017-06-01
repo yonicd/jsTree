@@ -1,12 +1,17 @@
 dependencies:
-  - name: fontawesome
-    version: 3.2.1
-    src: htmlwidgets/lib/font-awesome
-    stylesheet: css/font-awesome.min.css
   - name: jquery
     version: 3.2.1
     src: htmlwidgets/lib/jquery
     script: jquery.min.js
+  - name: bootstrap
+    version: 3.3.5
+    src: htmlwidgets/lib/bootstrap
+    script: bootstrap.min.js
+    stylesheet: css/bootstrap.min.css
+  - name: fontawesome
+    version: 4.5.0
+    src: htmlwidgets/lib/font-awesome
+    stylesheet: css/font-awesome.css
   - name: jstree
     version: 3.3.4
     src: htmlwidgets/lib/jsTree
