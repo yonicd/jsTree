@@ -48,7 +48,23 @@ HTMLWidgets.widget({
       collapseBtn.id='collapse';
       el.appendChild(collapseBtn);
       
+      var getBtn = document.createElement("button");
+      var getText = document.createTextNode("Get");
+      getBtn.appendChild(getText);
+      getBtn.id='get';
+      el.appendChild(getBtn);
+      
       el.appendChild(mainDiv);
+      
+      /*var link = "http://www.quirksmode.org/iframetest2.html";
+      
+      var iframe = document.createElement('iframe');
+      iframe.frameBorder=0;
+      iframe.width="300px";
+      iframe.height="250px";
+      iframe.id="iframeId";
+      iframe.setAttribute("src", link);
+      el.appendChild(iframe);*/
       
       $("#q").on('keyup.ns.search', search);
       
@@ -101,7 +117,10 @@ $("#s").submit(function(e) {
         $('#jstree').jstree("close_all");
     });
 
-    
+$("#get").click(function () {
+console.log($('#jstree').jstree(true).get_selected());
+});
+
       },
 
       resize: function(width, height) {
