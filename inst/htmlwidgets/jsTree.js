@@ -20,17 +20,33 @@ HTMLWidgets.widget({
       var mainDiv = document.createElement("div");
       mainDiv.id = 'jstree';
       
+      var expandBtn = document.createElement("button");
+      var expandText = document.createTextNode("Expand");
+      expandBtn.appendChild(expandText);
+      expandBtn.id='expand';
+      el.appendChild(expandBtn);
+      
+      var collapseBtn = document.createElement("button");
+      var collapseText = document.createTextNode("Collapse");
+      collapseBtn.appendChild(collapseText);
+      collapseBtn.id='collapse';
+      el.appendChild(collapseBtn);
+      
       el.appendChild(mainDiv);
       
       var tree = $('#jstree').jstree({
         'core' : {
           'data' : x.data
-      },plugins: ['checkbox','search','contextmenu','themes','types']
-        
+      },plugins: ['checkbox','themes','ui']
       });
       
+    $('#expand').bind("click", function () {
+        $('#jstree').jstree("open_all");
+    });
+    $('#collapse').bind("click", function () {
+        $('#jstree').jstree("close_all");
+    });
     
-
       },
 
       resize: function(width, height) {

@@ -14,5 +14,5 @@ Htmlwidget for the jsTree Javascript library
 }
 \examples{
 jsTree(list.dirs())
-if(dir.exists(.git)) jsTree(system('git ls-tree -r HEAD --name-only',intern=TRUE))
+jsTree(ciderhouse::show_repo('tidyverse/purrr',showTree = FALSE))
 }

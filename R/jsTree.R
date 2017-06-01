@@ -3,7 +3,7 @@
 #' @param obj character, vector of directory tree
 #' @examples 
 #' jsTree(list.dirs())
-#' if(dir.exists(.git)) jsTree(system('git ls-tree -r HEAD --name-only',intern=TRUE))
+#' jsTree(ciderhouse::show_repo('tidyverse/purrr',showTree = FALSE))
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
 #' @export
