@@ -6,7 +6,7 @@ makeList <- function(x) {
     lapply(names(listSplit), function(y){
       l2<-listSplit[[y]]
       if(all(is.na(l2))){
-        list(text = y,icon='glyphicon glyphicon-leaf',state=list())
+        list(text = y,icon='fa fa-file-o',state=list())
       }else{
         list(text = y, children = makeList(l2))  
       }
@@ -14,7 +14,7 @@ makeList <- function(x) {
   } else {
     if(!all(is.na(x[,1]))){nms <- x[,1]
     lapply(seq_along(nms), function(y){
-      list(text = nms[y],icon='glyphicon glyphicon-leaf',state=list())
+      list(text = nms[y],icon='fa fa-file-o',state=list())
     })
     }
   }
