@@ -15,4 +15,4 @@ devtools::install_github('yonicd/jsTree')
   jsTree(x)
 ```
 
-![](https://github.com/yonicd/jsTree/blob/master/MIscellaneous/show_git.gif?raw=true)
+![](https://github.com/yonicd/jsTree/blob/master/MIscellaneous/show_git_buttons.gif?raw=true)
