@@ -1,9 +1,9 @@
 Package: jsTree
-Title: Create Interactive Trees with the JavaScript 'jsTree' Library
+Title: Create Interactive Trees with the jQuery 'jsTree' Plugin
 Version: 0.1
 Authors@R: person("Jonathan", "Sidi", email = "yonis@metrumrg.com", role = c("aut", "cre"))
-Description: Create and customize interactive trees using the 'jsTree'
-    jQuery plugin library and the 'htmlwidgets' package. These trees can be used
+Description: Create and customize interactive trees using the jQuery 'jsTree'
+    plugin library and the 'htmlwidgets' package. These trees can be used
     directly from the R console, from 'RStudio', in Shiny apps and R Markdown documents.
 Depends: R (>= 3.3.2)
 Imports: plyr, jsonlite
