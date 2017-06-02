@@ -9,6 +9,10 @@ jsTree(obj, gh_repo = NULL, gh_branch = "master", width = NULL,
 }
 \arguments{
 \item{obj}{character, vector of directory tree}
+
+\item{gh_repo}{character, github user/repository, Default: NULL}
+
+\item{gh_branch}{character, branch of gh_repo, Default: 'master'}
 }
 \description{
 Htmlwidget for the jsTree Javascript library

@@ -1,11 +1,14 @@
 #' @title Htmlwidget for the jsTree Javascript library
 #' @description Htmlwidget for the jsTree Javascript library
 #' @param obj character, vector of directory tree
+#' @param gh_repo character, github user/repository, Default: NULL
+#' @param gh_branch character, branch of gh_repo, Default: 'master'
 #' @examples 
 #' jsTree(list.dirs())
 #' jsTree(ciderhouse::show_repo('tidyverse/purrr',showTree = FALSE))
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
+#' @importFrom httr http_error
 #' @export
 jsTree <- function(obj, gh_repo=NULL,gh_branch='master',width = NULL, height = NULL, elementId = NULL) {
 
