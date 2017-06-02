@@ -17,6 +17,9 @@ jsTree(obj, gh_repo = NULL, gh_branch = "master", width = NULL,
 \description{
 Htmlwidget for the jsTree Javascript library
 }
+\details{
+if gh_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
+}
 \examples{
 jsTree(list.dirs())
 jsTree(ciderhouse::show_repo('tidyverse/purrr',showTree = FALSE))
