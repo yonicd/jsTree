@@ -4,7 +4,8 @@
 \alias{jsTree}
 \title{Htmlwidget for the jsTree Javascript library}
 \usage{
-jsTree(obj, width = NULL, height = NULL, elementId = NULL)
+jsTree(obj, gh_repo = NULL, gh_branch = "master", width = NULL,
+  height = NULL, elementId = NULL)
 }
 \arguments{
 \item{obj}{character, vector of directory tree}

@@ -1,0 +1,19 @@
+nav {
+    float: left;
+    max-width: 300px;
+    margin: 0;
+    padding: 1em;
+}
+
+article {
+    margin-left: 310px;
+    border-left: 1px solid gray;
+    padding: 1em;
+}
+
+header, footer {
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}

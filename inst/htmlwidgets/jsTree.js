@@ -13,12 +13,20 @@ HTMLWidgets.widget({
       renderValue: function(x) {
 
         // Wipe the existing tree and create a new one.
-      $elem = $('#' + el.id)
+      $elem = $('#' + el.id);
       
       $elem.jstree('destroy');
       
+      $('#' + el.id).css('overflow', 'auto');
+      $('#' + el.id).css('width', '100%');
+      
+      var navBar = document.createElement("nav");
+      var container = document.createElement("article");
+      
       var mainDiv = document.createElement("div");
       mainDiv.className = 'jstree';
+      
+      var btnsDiv = document.createElement("div");
       
       var searchForm = document.createElement("form");
       searchForm.className = 's';
@@ -27,45 +35,62 @@ HTMLWidgets.widget({
       searchInput.setAttribute('type',"search");
       searchInput.className = 'q';
       
-      var searchBtn = document.createElement("button");
-      var searchText = document.createTextNode("Search");
-      searchBtn.setAttribute('type',"submit");
-      searchBtn.appendChild(searchText);
+      //var searchBtn = document.createElement("BUTTON");
+      //var searchText = document.createTextNode("Search");
+      //searchBtn.setAttribute('type',"submit");
+      //searchBtn.appendChild(searchText);
       
       searchForm.appendChild(searchInput);
-      searchForm.appendChild(searchBtn);
-      el.appendChild(searchForm);
+      //searchForm.appendChild(searchBtn);
       
-      var expandBtn = document.createElement("button");
+      var expandBtn = document.createElement("BUTTON");
       var expandText = document.createTextNode("Expand");
       expandBtn.appendChild(expandText);
       expandBtn.className='expand';
-      el.appendChild(expandBtn);
       
-      var collapseBtn = document.createElement("button");
+      var collapseBtn = document.createElement("BUTTON");
       var collapseText = document.createTextNode("Collapse");
       collapseBtn.appendChild(collapseText);
       collapseBtn.className='collapse';
-      el.appendChild(collapseBtn);
       
-      var getBtn = document.createElement("button");
+      var getBtn = document.createElement("BUTTON");
       var getText = document.createTextNode("Get");
       getBtn.appendChild(getText);
       getBtn.className='get';
-      el.appendChild(getBtn);
       
-      el.appendChild(mainDiv);
       
-      /*var link = "http://www.quirksmode.org/iframetest2.html";
+      var previewDiv = document.createElement("DIV");
+      var previewPre = document.createElement("PRE");
+      previewPre.id='preview';
+      previewDiv.appendChild(previewPre);
       
-      var iframe = document.createElement('iframe');
-      iframe.frameBorder=0;
-      iframe.width="300px";
-      iframe.height="250px";
-      iframe.id="iframeId";
-      iframe.setAttribute("src", link);
-      el.appendChild(iframe);*/
+      btnsDiv.appendChild(expandBtn);
+      btnsDiv.appendChild(collapseBtn);
+      btnsDiv.appendChild(getBtn);
       
+      navBar.appendChild(searchForm);
+      navBar.appendChild(btnsDiv);
+      navBar.appendChild(mainDiv);
+      
+      el.appendChild(navBar);
+      
+      if(x.uri){
+        var uri=x.uri;
+        loadXMLDoc(uri);
+        
+        //var headerP = document.createElement('header');
+        var titleP = document.createElement('P');
+        var titleText = document.createTextNode(uri);
+        titleP.appendChild(titleText);
+        //headerP.appendChild(titleP);
+        
+        container.appendChild(titleP);
+        container.appendChild(previewDiv);
+        el.appendChild(container);
+      }
+
+      
+
       $(".q").on('keyup.ns.search', search);
       
       var tree = $('.jstree').jstree({
@@ -83,7 +108,7 @@ HTMLWidgets.widget({
     data.nodes.children("a").each(function (idx, node) {
         var h = node.innerHTML;        
         var orig = $('.jstree').jstree(true).get_node(node).text;
-        var txt = orig.replace(new RegExp("("+data.str + ")", "gi"), function(a,b){
+        var txt = orig.replace(new RegExp("(" + data.str + ")", "gi"), function(a,b){
           //debugger;
             return '<span style="color:green">' + b + '</span>';
         });
@@ -120,6 +145,18 @@ $(".s").submit(function(e) {
 $(".get").click(function () {
 console.log($('.jstree').jstree(true).get_selected());
 });
+
+function loadXMLDoc(uri) {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("preview").innerHTML =
+      this.responseText;
+    }
+  };
+  xmlhttp.open("GET", uri, true);
+  xmlhttp.send();
+}
 
       },
 

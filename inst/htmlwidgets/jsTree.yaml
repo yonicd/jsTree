@@ -17,3 +17,7 @@ dependencies:
     src: htmlwidgets/lib/jsTree
     script: jstree.min.js
     stylesheet: themes/default/style.min.css
+  - name: jstree_widget
+    version: 0.0.1
+    src: htmlwidgets/lib/jsTree_widget
+    stylesheet: jsTree.css
