@@ -1,12 +1,12 @@
 nav {
     float: left;
-    max-width: 300px;
+    max-width: 400px;
     margin: 0;
     padding: 1em;
 }
 
 article {
-    margin-left: 310px;
+    margin-left: 410px;
     border-left: 1px solid gray;
     padding: 1em;
 }

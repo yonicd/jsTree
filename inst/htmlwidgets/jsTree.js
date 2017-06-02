@@ -67,7 +67,7 @@ HTMLWidgets.widget({
       
       btnsDiv.appendChild(expandBtn);
       btnsDiv.appendChild(collapseBtn);
-      btnsDiv.appendChild(getBtn);
+      if(x.uri) btnsDiv.appendChild(getBtn);
       
       navBar.appendChild(searchForm);
       navBar.appendChild(br);
@@ -88,7 +88,8 @@ HTMLWidgets.widget({
             "show_only_matches_children" : true
           },
       */
-      'plugins': ['search','checkbox']
+      'contextmenu': {'items': customMenu},
+      'plugins': ['search','checkbox','contextmenu']
       }).on("search.jstree", function(ev, data){ //http://jsfiddle.net/2kwkh2uL/2188/
     data.nodes.children("a").each(function (idx, node) {
         var h = node.innerHTML;        
@@ -136,9 +137,6 @@ previewDiv.appendChild(titleP);
 $(".get").click(function () {
 var node=$('.jstree').jstree("get_selected", true);
 
-//console.log($('.jstree').jstree(true).get_selected());
-//console.log($('.jstree').jstree().get_selected(true)[0].text);
-
 if(x.uri){
         var uri=x.uri+$('.jstree').jstree().get_path(node[0], '/') + '?raw=true';
         loadXMLDoc(uri);
@@ -162,6 +160,59 @@ function loadXMLDoc(uri) {
   xmlhttp.open("GET", uri, true);
   xmlhttp.send();
 }
+
+  function customMenu(node) { //http://jsfiddle.net/dpzy8xjb/
+        //debugger
+        //Show a different label for renaming files and folders
+        var tree = $('.jstree').jstree(true);
+        var ID = $(node).attr('id');
+        if (ID == "j1_1") {
+            return items = {};
+        }
+        var $mynode = $('#' + ID);
+        var renameLabel;
+        var deleteLabel;
+        var folder = false;
+        if ($mynode.hasClass("jstree-closed") || $mynode.hasClass("jstree-open")) { //If node is a folder
+        //    renameLabel = "Rename Folder";
+        //    deleteLabel = "Delete Folder";
+            folder = true;
+        } else {
+        //    renameLabel = "Rename File";
+        //    deleteLabel = "Delete File";
+            previewFile = "Preview File";
+        }
+        var items = {
+            /*"rename": {
+                "label": renameLabel, //Different label (defined above) will be shown depending on node type
+                "action": function (obj) {}
+            },
+                "delete": {
+                "label": deleteLabel,
+                    "action": function (obj) {
+                    tree.delete_node($(node));
+                }
+            },*/
+                "preview": {
+                  "label": previewFile,
+                  "action": function(obj){
+                    //var node=$('.jstree').jstree("get_selected", true);
+
+                    if(x.uri){
+                            var uri=x.uri+tree.get_path($(node)[0], '/') + '?raw=true';
+                            loadXMLDoc(uri);
+                            textP.nodeValue=uri;
+                            
+                            previewDiv.appendChild(previewPre);
+                            container.appendChild(previewDiv);
+                            el.appendChild(container);
+                          }
+                  }
+                }
+        };
+
+        return items;
+    }
 
       },
 
