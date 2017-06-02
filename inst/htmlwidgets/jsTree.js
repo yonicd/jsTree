@@ -13,27 +13,33 @@ HTMLWidgets.widget({
       renderValue: function(x) {
 
         // Wipe the existing tree and create a new one.
+      debugger;
       $elem = $('#' + el.id);
+      $elem.css('overflow', 'auto');
+      $elem.css('width', '100%');
       
       $elem.jstree('destroy');
       
-      $('#' + el.id).css('overflow', 'auto');
-      $('#' + el.id).css('width', '100%');
+      $('.navBar' + el.id).detach();
+      $('.container' + el.id).detach();
+      
       
       var navBar = document.createElement("nav");
+      navBar.className = 'navBar' + el.id;
       var container = document.createElement("article");
+      container.className = 'container' + el.id;
       
       var mainDiv = document.createElement("div");
-      mainDiv.className = 'jstree';
+      mainDiv.className = 'jstree' + el.id;
       
       var btnsDiv = document.createElement("div");
       
       var searchForm = document.createElement("form");
-      searchForm.className = 's';
+      searchForm.className = 's' + el.id;
       
       var searchInput = document.createElement("input");
       searchInput.setAttribute('type',"search");
-      searchInput.className = 'q';
+      searchInput.className = 'q' + el.id;
       
       //var searchBtn = document.createElement("BUTTON");
       //var searchText = document.createTextNode("Search");
@@ -46,39 +52,43 @@ HTMLWidgets.widget({
       var expandBtn = document.createElement("BUTTON");
       var expandText = document.createTextNode("Expand");
       expandBtn.appendChild(expandText);
-      expandBtn.className='expand';
+      expandBtn.className='expand' + el.id;
       
       var collapseBtn = document.createElement("BUTTON");
       var collapseText = document.createTextNode("Collapse");
       collapseBtn.appendChild(collapseText);
-      collapseBtn.className='collapse';
+      collapseBtn.className='toCollapse' + el.id;
       
       var getBtn = document.createElement("BUTTON");
       var getText = document.createTextNode("Preview File");
       getBtn.appendChild(getText);
-      getBtn.className='get';
+      getBtn.className='get' + el.id;
       
       
       var previewDiv = document.createElement("DIV");
       var previewPre = document.createElement("PRE");
-      previewPre.id='preview';
+      previewPre.id='preview' + el.id;
       
-      var br = document.createElement('BR');
+      //var br = document.createElement('BR');
       
       btnsDiv.appendChild(expandBtn);
       btnsDiv.appendChild(collapseBtn);
       if(x.uri) btnsDiv.appendChild(getBtn);
       
       navBar.appendChild(searchForm);
-      navBar.appendChild(br);
+      //navBar.appendChild(br);
       navBar.appendChild(btnsDiv);
       navBar.appendChild(mainDiv);
       
       el.appendChild(navBar);
       
-      $(".q").on('keyup.ns.search', search);
+      $(".q" + el.id).on('keyup.ns.search', search);
       
-      var tree = $('.jstree').jstree({
+      var treePlugins=['search','checkbox'];
+      
+      if(x.uri) treePlugins.push('contextmenu');
+      
+      var tree = $('.jstree' + el.id).jstree({
         'core' : {
           'data' : x.data
       },
@@ -89,7 +99,7 @@ HTMLWidgets.widget({
           },
       */
       'contextmenu': {'items': customMenu},
-      'plugins': ['search','checkbox','contextmenu']
+      'plugins': treePlugins
       }).on("search.jstree", function(ev, data){ //http://jsfiddle.net/2kwkh2uL/2188/
     data.nodes.children("a").each(function (idx, node) {
         var h = node.innerHTML;        
@@ -112,19 +122,19 @@ HTMLWidgets.widget({
 });
 
 function search(){
-    var str = $(".q").val();
-    $(".jstree").jstree(true).search(str);    
+    var str = $(".q" + el.id).val();
+    $('.jstree').jstree(true).search(str);    
 }
 
 $(".s").submit(function(e) {
   e.preventDefault();
-  $(".jstree").jstree(true).search($(".q").val());
+  $('.jstree').jstree(true).search($(".q" + el.id).val());
 });
       
     $('.expand').bind("click", function () {
         $('.jstree').jstree("open_all");
     });
-    $('.collapse').bind("click", function () {
+    $('.toCollapse' + el.id).bind("click", function () {
         $('.jstree').jstree("close_all");
     });
 
@@ -134,7 +144,7 @@ titleP.appendChild(textP);
 previewDiv.appendChild(titleP);
 
 
-$(".get").click(function () {
+$(".get" + el.id).click(function () {
 var node=$('.jstree').jstree("get_selected", true);
 
 if(x.uri){
@@ -153,7 +163,7 @@ function loadXMLDoc(uri) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("preview").innerHTML =
+      document.getElementById("preview" + el.id).innerHTML =
       this.responseText;
     }
   };

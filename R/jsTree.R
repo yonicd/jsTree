@@ -13,7 +13,7 @@
 #' @export
 jsTree <- function(obj, gh_repo=NULL,gh_branch='master',width = NULL, height = NULL, elementId = NULL) {
 
-  obj.in<-nest(obj,root=ifelse(!is.null(gh_repo),paste(gh_repo,gh_branch,sep='/'),'root'))
+  obj.in<-nest(obj,root=ifelse(!is.null(gh_repo),paste(gh_repo,gh_branch,sep='/'),'./'))
   
   # forward options using x
   x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE))
