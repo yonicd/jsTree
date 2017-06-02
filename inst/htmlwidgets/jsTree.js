@@ -76,23 +76,6 @@ HTMLWidgets.widget({
       
       el.appendChild(navBar);
       
-      if(x.uri){
-        var uri=x.uri;
-        loadXMLDoc(uri);
-        
-        var headerP = document.createElement('header');
-        var titleP = document.createElement('P');
-        var textP = document.createTextNode(uri);
-        titleP.appendChild(textP);
-        //headerP.appendChild(titleP);
-        
-        previewDiv.appendChild(titleP);
-        previewDiv.appendChild(previewPre);
-        container.appendChild(previewDiv);
-        el.appendChild(container);
-      }
-
-
       $(".q").on('keyup.ns.search', search);
       
       var tree = $('.jstree').jstree({
@@ -146,6 +129,24 @@ $(".s").submit(function(e) {
 
 $(".get").click(function () {
 console.log($('.jstree').jstree(true).get_selected());
+console.log($('.jstree').jstree().get_selected(true)[0].text);
+
+if(x.uri){
+        var uri=x.uri+$('.jstree').jstree().get_selected(true)[0].text + '?raw=true';
+        loadXMLDoc(uri);
+        
+        var headerP = document.createElement('header');
+        var titleP = document.createElement('P');
+        var textP = document.createTextNode(uri);
+        titleP.appendChild(textP);
+        //headerP.appendChild(titleP);
+        
+        previewDiv.appendChild(titleP);
+        previewDiv.appendChild(previewPre);
+        container.appendChild(previewDiv);
+        el.appendChild(container);
+      }
+
 });
 
 function loadXMLDoc(uri) {

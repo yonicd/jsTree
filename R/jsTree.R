@@ -18,8 +18,9 @@ jsTree <- function(obj, gh_repo=NULL,gh_branch='master',width = NULL, height = N
   # forward options using x
   x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE))
   if(!is.null(gh_repo)) {
-    uri_git=sprintf('https://raw.githubusercontent.com/%s/%s/R/bin.R?raw=true',gh_repo,gh_branch)  
-    if(!httr::http_error(uri_git)) x$uri=uri_git
+    uri_git=sprintf('https://raw.githubusercontent.com/%s/%s/R/',gh_repo,gh_branch)  
+    #if(!httr::http_error(uri_git))
+      x$uri=uri_git
   }
 
   # create widget
