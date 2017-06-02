@@ -22,8 +22,8 @@ makeList <- function(x) {
 
 #'@export
 #'@importFrom plyr rbind.fill
-nest<-function(l){
-  df=data.frame(V0='root',
+nest<-function(l,root='root'){
+  df=data.frame(V0=root,
              plyr::rbind.fill(lapply(strsplit(l,'/'),
                                      function(x) as.data.frame(t(x),stringsAsFactors = FALSE)),
                               fill = TRUE),

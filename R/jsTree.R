@@ -13,15 +13,12 @@
 #' @export
 jsTree <- function(obj, gh_repo=NULL,gh_branch='master',width = NULL, height = NULL, elementId = NULL) {
 
-  obj.in<-nest(obj)
+  obj.in<-nest(obj,root=ifelse(!is.null(gh_repo),paste(gh_repo,gh_branch,sep='/'),'root'))
   
   # forward options using x
-  x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE))
-  if(!is.null(gh_repo)) {
-    uri_git=sprintf('https://raw.githubusercontent.com/%s/%s/R/',gh_repo,gh_branch)  
-    #if(!httr::http_error(uri_git))
-      x$uri=uri_git
-  }
+  x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE),
+           uri='https://raw.githubusercontent.com/')
+
 
   # create widget
   htmlwidgets::createWidget(

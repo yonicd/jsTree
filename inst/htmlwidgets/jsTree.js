@@ -54,7 +54,7 @@ HTMLWidgets.widget({
       collapseBtn.className='collapse';
       
       var getBtn = document.createElement("BUTTON");
-      var getText = document.createTextNode("Get");
+      var getText = document.createTextNode("Preview File");
       getBtn.appendChild(getText);
       getBtn.className='get';
       
@@ -127,21 +127,23 @@ $(".s").submit(function(e) {
         $('.jstree').jstree("close_all");
     });
 
+var titleP = document.createElement('P');
+var textP = document.createTextNode('');
+titleP.appendChild(textP);
+previewDiv.appendChild(titleP);
+
+
 $(".get").click(function () {
-console.log($('.jstree').jstree(true).get_selected());
-console.log($('.jstree').jstree().get_selected(true)[0].text);
+var node=$('.jstree').jstree("get_selected", true);
+
+//console.log($('.jstree').jstree(true).get_selected());
+//console.log($('.jstree').jstree().get_selected(true)[0].text);
 
 if(x.uri){
-        var uri=x.uri+$('.jstree').jstree().get_selected(true)[0].text + '?raw=true';
+        var uri=x.uri+$('.jstree').jstree().get_path(node[0], '/') + '?raw=true';
         loadXMLDoc(uri);
+        textP.nodeValue=uri;
         
-        var headerP = document.createElement('header');
-        var titleP = document.createElement('P');
-        var textP = document.createTextNode(uri);
-        titleP.appendChild(textP);
-        //headerP.appendChild(titleP);
-        
-        previewDiv.appendChild(titleP);
         previewDiv.appendChild(previewPre);
         container.appendChild(previewDiv);
         el.appendChild(container);
