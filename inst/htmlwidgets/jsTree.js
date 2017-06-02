@@ -62,13 +62,15 @@ HTMLWidgets.widget({
       var previewDiv = document.createElement("DIV");
       var previewPre = document.createElement("PRE");
       previewPre.id='preview';
-      previewDiv.appendChild(previewPre);
+      
+      var br = document.createElement('BR');
       
       btnsDiv.appendChild(expandBtn);
       btnsDiv.appendChild(collapseBtn);
       btnsDiv.appendChild(getBtn);
       
       navBar.appendChild(searchForm);
+      navBar.appendChild(br);
       navBar.appendChild(btnsDiv);
       navBar.appendChild(mainDiv);
       
@@ -78,18 +80,18 @@ HTMLWidgets.widget({
         var uri=x.uri;
         loadXMLDoc(uri);
         
-        //var headerP = document.createElement('header');
+        var headerP = document.createElement('header');
         var titleP = document.createElement('P');
-        var titleText = document.createTextNode(uri);
-        titleP.appendChild(titleText);
+        var textP = document.createTextNode(uri);
+        titleP.appendChild(textP);
         //headerP.appendChild(titleP);
         
-        container.appendChild(titleP);
+        previewDiv.appendChild(titleP);
+        previewDiv.appendChild(previewPre);
         container.appendChild(previewDiv);
         el.appendChild(container);
       }
 
-      
 
       $(".q").on('keyup.ns.search', search);
       
