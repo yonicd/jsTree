@@ -18,14 +18,14 @@ HTMLWidgets.widget({
       $elem.jstree('destroy');
       
       var mainDiv = document.createElement("div");
-      mainDiv.id = 'jstree';
+      mainDiv.className = 'jstree';
       
       var searchForm = document.createElement("form");
-      searchForm.id = 's';
+      searchForm.className = 's';
       
       var searchInput = document.createElement("input");
       searchInput.setAttribute('type',"search");
-      searchInput.id = 'q';
+      searchInput.className = 'q';
       
       var searchBtn = document.createElement("button");
       var searchText = document.createTextNode("Search");
@@ -39,19 +39,19 @@ HTMLWidgets.widget({
       var expandBtn = document.createElement("button");
       var expandText = document.createTextNode("Expand");
       expandBtn.appendChild(expandText);
-      expandBtn.id='expand';
+      expandBtn.className='expand';
       el.appendChild(expandBtn);
       
       var collapseBtn = document.createElement("button");
       var collapseText = document.createTextNode("Collapse");
       collapseBtn.appendChild(collapseText);
-      collapseBtn.id='collapse';
+      collapseBtn.className='collapse';
       el.appendChild(collapseBtn);
       
       var getBtn = document.createElement("button");
       var getText = document.createTextNode("Get");
       getBtn.appendChild(getText);
-      getBtn.id='get';
+      getBtn.className='get';
       el.appendChild(getBtn);
       
       el.appendChild(mainDiv);
@@ -66,9 +66,9 @@ HTMLWidgets.widget({
       iframe.setAttribute("src", link);
       el.appendChild(iframe);*/
       
-      $("#q").on('keyup.ns.search', search);
+      $(".q").on('keyup.ns.search', search);
       
-      var tree = $('#jstree').jstree({
+      var tree = $('.jstree').jstree({
         'core' : {
           'data' : x.data
       },
@@ -82,7 +82,7 @@ HTMLWidgets.widget({
       }).on("search.jstree", function(ev, data){ //http://jsfiddle.net/2kwkh2uL/2188/
     data.nodes.children("a").each(function (idx, node) {
         var h = node.innerHTML;        
-        var orig = $('#jstree').jstree(true).get_node(node).text;
+        var orig = $('.jstree').jstree(true).get_node(node).text;
         var txt = orig.replace(new RegExp("("+data.str + ")", "gi"), function(a,b){
           //debugger;
             return '<span style="color:green">' + b + '</span>';
@@ -92,7 +92,7 @@ HTMLWidgets.widget({
 }).on("clear_search.jstree", function(ev, data){
     $.each(data.nodes, function (idx, node) {
         var h = node.innerHTML;
-        var orig = $('#jstree').jstree(true).get_node(node.id).text;
+        var orig = $('.jstree').jstree(true).get_node(node.id).text;
         h = h.replace(new RegExp('<span style="color:green">(.*)</span>', 'gi'),     function (a, b) {
             return b; 
         });
@@ -101,24 +101,24 @@ HTMLWidgets.widget({
 });
 
 function search(){
-    var str = $("#q").val();
-    $("#jstree").jstree(true).search(str);    
+    var str = $(".q").val();
+    $(".jstree").jstree(true).search(str);    
 }
 
-$("#s").submit(function(e) {
+$(".s").submit(function(e) {
   e.preventDefault();
-  $("#jstree").jstree(true).search($("#q").val());
+  $(".jstree").jstree(true).search($(".q").val());
 });
       
-    $('#expand').bind("click", function () {
-        $('#jstree').jstree("open_all");
+    $('.expand').bind("click", function () {
+        $('.jstree').jstree("open_all");
     });
-    $('#collapse').bind("click", function () {
-        $('#jstree').jstree("close_all");
+    $('.collapse').bind("click", function () {
+        $('.jstree').jstree("close_all");
     });
 
-$("#get").click(function () {
-console.log($('#jstree').jstree(true).get_selected());
+$(".get").click(function () {
+console.log($('.jstree').jstree(true).get_selected());
 });
 
       },
