@@ -119,6 +119,22 @@ HTMLWidgets.widget({
         });
         node.innerHTML = h;
     });
+})
+.on("changed.jstree", function (ev, data) {
+             //var nodes = [];
+			       
+			  //var checked_nodes=$('.jstree').jstree("get_checked",null,true);
+			  
+			    var i, j, nodes = [];
+    for(i = 0, j = data.selected.length; i < j; i++) {
+      nodes.push(data.instance.get_node(data.selected[i]).text);
+    }
+
+			       if(typeof(Shiny) !== "undefined"){
+                Shiny.onInputChange(el.id + "_update",{
+                  ".current_tree": JSON.stringify(nodes)
+                });
+			       }
 });
 
 function search(){
