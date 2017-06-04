@@ -22,5 +22,5 @@ if gh_repo is given a preview pane of a selected file from the tree will appear 
 }
 \examples{
 jsTree(list.dirs())
-jsTree(ciderhouse::show_repo('tidyverse/purrr',showTree = FALSE))
+jsTree(ciderhouse::show_repo('tidyverse/reprex',showTree = FALSE),gh_repo = 'tidyverse/reprex')
 }

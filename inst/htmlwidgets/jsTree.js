@@ -121,20 +121,20 @@ HTMLWidgets.widget({
     });
 })
 .on("changed.jstree", function (ev, data) {
-             //var nodes = [];
-			       
-			  //var checked_nodes=$('.jstree').jstree("get_checked",null,true);
-			  
-			    var i, j, nodes = [];
-    for(i = 0, j = data.selected.length; i < j; i++) {
-      nodes.push(data.instance.get_node(data.selected[i]).text);
-    }
 
-			       if(typeof(Shiny) !== "undefined"){
-                Shiny.onInputChange(el.id + "_update",{
-                  ".current_tree": JSON.stringify(nodes)
-                });
-			       }
+  //var i, j, nodes = [];
+  //for(i = 0, j = data.selected.length; i < j; i++) {
+  //    nodes.push(data.instance.get_node(data.selected[i]).text);
+  //}
+  var node=$('.jstree').jstree("get_selected", true);
+  var nodes=node.map(function(n){return $('.jstree').jstree().get_path(n, '/')});
+
+  if(typeof(Shiny) !== "undefined"){
+      Shiny.onInputChange(el.id + "_update",{
+        ".current_tree": JSON.stringify(nodes)
+      });
+  }
+   
 });
 
 function search(){
@@ -147,7 +147,7 @@ $(".s").submit(function(e) {
   $('.jstree').jstree(true).search($(".q" + el.id).val());
 });
       
-    $('.expand').bind("click", function () {
+    $('.expand' + el.id).bind("click", function () {
         $('.jstree').jstree("open_all");
     });
     $('.toCollapse' + el.id).bind("click", function () {
@@ -199,31 +199,16 @@ function loadXMLDoc(uri) {
         var renameLabel;
         var deleteLabel;
         var folder = false;
-        if ($mynode.hasClass("jstree-closed") || $mynode.hasClass("jstree-open")) { //If node is a folder
-        //    renameLabel = "Rename Folder";
-        //    deleteLabel = "Delete Folder";
+        if ($mynode.hasClass("jstree-closed") || $mynode.hasClass("jstree-open")) { 
+          //If node is a folder
             folder = true;
         } else {
-        //    renameLabel = "Rename File";
-        //    deleteLabel = "Delete File";
             previewFile = "Preview File";
         }
         var items = {
-            /*"rename": {
-                "label": renameLabel, //Different label (defined above) will be shown depending on node type
-                "action": function (obj) {}
-            },
-                "delete": {
-                "label": deleteLabel,
-                    "action": function (obj) {
-                    tree.delete_node($(node));
-                }
-            },*/
                 "preview": {
                   "label": previewFile,
                   "action": function(obj){
-                    //var node=$('.jstree').jstree("get_selected", true);
-
                     if(x.uri){
                             var uri=x.uri+tree.get_path($(node)[0], '/') + '?raw=true';
                             loadXMLDoc(uri);
