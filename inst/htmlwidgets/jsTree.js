@@ -224,7 +224,30 @@ function loadXMLDoc(uri) {
 
         return items;
     }
-
+    
+    if(x.show_console){
+     var footer = document.createElement("footer");
+     var consolePre = document.createElement("PRE");
+      consolePre.id='log' + el.id;
+      footer.appendChild(consolePre);
+      el.appendChild(footer);
+      show_console(); 
+    }
+    
+ function show_console() {
+    var old = console.log;
+    var logger = document.getElementById('log' + el.id);
+    console.log = function () {
+      for (var i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] == 'object') {
+            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '<br />';
+        } else {
+            logger.innerHTML += arguments[i] + '<br />';
+        }
+      }
+    };
+    console.error = console.debug = console.info =  console.log
+}
       },
 
       resize: function(width, height) {

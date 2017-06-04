@@ -11,12 +11,13 @@
 #' @importFrom jsonlite toJSON
 #' @importFrom httr http_error
 #' @export
-jsTree <- function(obj, gh_repo=NULL,gh_branch='master',width = NULL, height = NULL, elementId = NULL) {
+jsTree <- function(obj, gh_repo=NULL,gh_branch='master', width = NULL, height = NULL, elementId = NULL) {
 
   obj.in<-nest(obj,root=ifelse(!is.null(gh_repo),paste(gh_repo,gh_branch,sep='/'),'./'))
   
   # forward options using x
-  x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE))
+  x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE),
+           show_console=TRUE)
   if(!is.null(gh_repo)) x$uri='https://raw.githubusercontent.com/'
 
 

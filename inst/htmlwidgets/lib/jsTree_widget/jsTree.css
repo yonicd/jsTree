@@ -11,9 +11,15 @@ article {
     padding: 1em;
 }
 
-header, footer {
+header {
     color: white;
     background-color: black;
     clear: left;
     text-align: center;
+}
+
+footer {
+    color: white;
+    background-color: grey;
+    clear: left;
 }
