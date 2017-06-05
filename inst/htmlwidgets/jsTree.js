@@ -13,7 +13,7 @@ HTMLWidgets.widget({
       renderValue: function(x) {
 
         // Wipe the existing tree and create a new one.
-      mobileConsole.show();
+      //mobileConsole.show();
       
       /*mobileConsole.options({
     		showOnError: true,
