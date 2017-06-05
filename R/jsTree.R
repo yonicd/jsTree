@@ -5,8 +5,8 @@
 #' @param gh_branch character, branch of gh_repo, Default: 'master'
 #' @details if gh_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
 #' @examples 
-#' jsTree(list.dirs())
-#' jsTree(ciderhouse::show_repo('tidyverse/reprex',showTree = FALSE),gh_repo = 'tidyverse/reprex')
+#' jsTree(list.files(full.names = TRUE,recursive = TRUE))
+#' jsTree(ciderhouse::ls_github('tidyverse/reprex',recursive = TRUE),gh_repo = 'tidyverse/reprex')
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
 #' @importFrom httr http_error
