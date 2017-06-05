@@ -13,7 +13,7 @@ HTMLWidgets.widget({
       renderValue: function(x) {
 
         // Wipe the existing tree and create a new one.
-      debugger;
+      Logger.toggle();
       $elem = $('#' + el.id);
       $elem.css('overflow', 'auto');
       $elem.css('width', '100%');
@@ -225,26 +225,6 @@ function loadXMLDoc(uri) {
         return items;
     }
     
-    if(x.show_console){
-     var footer = document.createElement("footer");
-     var consolePre = document.createElement("PRE");
-      consolePre.id='log' + el.id;
-      footer.appendChild(consolePre);
-      el.appendChild(footer);
-    }
-    
-  var log = document.querySelector('#log'+el.id);
-['log','debug','info','warn','error'].forEach(function (verb) {
-                  console[verb] = (function (method, verb, log) {
-                  return function () {
-                  method.apply(console, arguments);
-                  var msg = document.createElement('div');
-                  msg.classList.add(verb);
-                  msg.textContent = verb + ': ' + Array.prototype.slice.call(arguments).join(' ');
-                  log.appendChild(msg);
-                  };
-                  })(console[verb], verb, log);
-                  });
       },
 
       resize: function(width, height) {

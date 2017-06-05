@@ -3,6 +3,10 @@ dependencies:
     version: 3.2.1
     src: htmlwidgets/lib/jquery
     script: jquery.min.js
+  - name: logger
+    version: 1.16
+    src: htmlwidgets/lib/Logger
+    script: Logger.js
   - name: bootstrap
     version: 3.3.5
     src: htmlwidgets/lib/bootstrap
