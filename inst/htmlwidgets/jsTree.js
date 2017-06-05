@@ -231,23 +231,20 @@ function loadXMLDoc(uri) {
       consolePre.id='log' + el.id;
       footer.appendChild(consolePre);
       el.appendChild(footer);
-      show_console(); 
     }
     
- function show_console() {
-    var old = console.log;
-    var logger = document.getElementById('log' + el.id);
-    console.log = function () {
-      for (var i = 0; i < arguments.length; i++) {
-        if (typeof arguments[i] == 'object') {
-            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '<br />';
-        } else {
-            logger.innerHTML += arguments[i] + '<br />';
-        }
-      }
-    };
-    console.error = console.debug = console.info =  console.log
-}
+  var log = document.querySelector('#log'+el.id);
+['log','debug','info','warn','error'].forEach(function (verb) {
+                  console[verb] = (function (method, verb, log) {
+                  return function () {
+                  method.apply(console, arguments);
+                  var msg = document.createElement('div');
+                  msg.classList.add(verb);
+                  msg.textContent = verb + ': ' + Array.prototype.slice.call(arguments).join(' ');
+                  log.appendChild(msg);
+                  };
+                  })(console[verb], verb, log);
+                  });
       },
 
       resize: function(width, height) {
