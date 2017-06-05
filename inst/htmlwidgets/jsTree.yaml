@@ -3,10 +3,11 @@ dependencies:
     version: 3.2.1
     src: htmlwidgets/lib/jquery
     script: jquery.min.js
-  - name: logger
-    version: 1.16
-    src: htmlwidgets/lib/Logger
-    script: Logger.js
+  - name: js-mobile-console
+    version: 0.3.1
+    src: htmlwidgets/lib/js-mobile-console
+    script: mobile-console.min.js
+    stylesheet: style/mobile-console.min.css
   - name: bootstrap
     version: 3.3.5
     src: htmlwidgets/lib/bootstrap

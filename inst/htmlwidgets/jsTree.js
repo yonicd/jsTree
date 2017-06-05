@@ -13,7 +13,15 @@ HTMLWidgets.widget({
       renderValue: function(x) {
 
         // Wipe the existing tree and create a new one.
-      Logger.toggle();
+      mobileConsole.show();
+      
+      /*mobileConsole.options({
+    		showOnError: true,
+    		proxyConsole: true,
+    		isCollapsed: true,
+    		catchErrors: true
+    	});*/
+      
       $elem = $('#' + el.id);
       $elem.css('overflow', 'auto');
       $elem.css('width', '100%');

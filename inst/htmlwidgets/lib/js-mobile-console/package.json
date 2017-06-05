@@ -1,0 +1,82 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "js-mobile-console",
+        "scope": null,
+        "escapedName": "js-mobile-console",
+        "name": "js-mobile-console",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/jonathans/projects/jsTree/inst/htmlwidgets/lib/mobile_console"
+    ]
+  ],
+  "_from": "js-mobile-console@latest",
+  "_id": "js-mobile-console@0.3.1",
+  "_inCache": true,
+  "_location": "/js-mobile-console",
+  "_npmUser": {
+    "name": "msemenistyi",
+    "email": "nikeiwe@gmail.com"
+  },
+  "_npmVersion": "1.3.22",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "js-mobile-console",
+    "scope": null,
+    "escapedName": "js-mobile-console",
+    "name": "js-mobile-console",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/js-mobile-console/-/js-mobile-console-0.3.1.tgz",
+  "_shasum": "064d2b3aa4d96ec9b5edb75e8cd87a3493639182",
+  "_shrinkwrap": null,
+  "_spec": "js-mobile-console",
+  "_where": "/Users/jonathans/projects/jsTree/inst/htmlwidgets/lib/mobile_console",
+  "author": {
+    "name": "msemenistyi"
+  },
+  "bugs": {
+    "url": "https://github.com/B1naryStudio/js-mobile-console/issues"
+  },
+  "dependencies": {},
+  "description": "JS console emulator for mobile devices",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "064d2b3aa4d96ec9b5edb75e8cd87a3493639182",
+    "tarball": "https://registry.npmjs.org/js-mobile-console/-/js-mobile-console-0.3.1.tgz"
+  },
+  "homepage": "https://github.com/B1naryStudio/js-mobile-console",
+  "keywords": [
+    "console",
+    "emulator",
+    "debug"
+  ],
+  "license": "MIT",
+  "main": "mobile-console.js",
+  "maintainers": [
+    {
+      "name": "msemenistyi",
+      "email": "nikeiwe@gmail.com"
+    }
+  ],
+  "name": "js-mobile-console",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/B1naryStudio/js-mobile-console.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.3.1"
+}
