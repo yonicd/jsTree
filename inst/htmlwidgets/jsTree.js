@@ -13,14 +13,14 @@ HTMLWidgets.widget({
       renderValue: function(x) {
 
         // Wipe the existing tree and create a new one.
-      //mobileConsole.show();
+      mobileConsole.show();
       
-      /*mobileConsole.options({
-    		showOnError: true,
+      mobileConsole.options({
+    		showOnError: false,
     		proxyConsole: true,
     		isCollapsed: true,
     		catchErrors: true
-    	});*/
+    	});
       
       $elem = $('#' + el.id);
       $elem.css('overflow', 'auto');
@@ -143,7 +143,12 @@ HTMLWidgets.widget({
       });
   }
    
+})
+.on("loaded.jstree",function(ev,data){
+  
+  $('.jstree').jstree('select_node', 'j1_1');
 });
+
 
 function search(){
     var str = $(".q" + el.id).val();

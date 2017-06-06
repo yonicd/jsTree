@@ -13,11 +13,19 @@
 #' @export
 jsTree <- function(obj, gh_repo=NULL,gh_branch='master', width = NULL, height = NULL, elementId = NULL) {
 
-  obj.in<-nest(obj,root=ifelse(!is.null(gh_repo),paste(gh_repo,gh_branch,sep='/'),'./'))
+  obj.in<-nest(obj,root=ifelse(!is.null(gh_repo),paste(gh_repo,gh_branch,sep='/'),getwd()))
   
   # forward options using x
   x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE))
-  if(!is.null(gh_repo)) x$uri='https://raw.githubusercontent.com/'
+  # current_head<-show_repo(getwd(),showTree = FALSE)
+  # x$openwith=sprintf('j1_%s',which(current_head%in%list.files(getwd(),recursive = TRUE)))
+  # 
+  if(!is.null(gh_repo)){
+    x$uri='https://raw.githubusercontent.com/'
+    #current_head<-show_repo(getwd(),showTree = FALSE)
+    #x$openwith=sprintf('j1_%s',which(current_head%in%list.files(getwd(),recursive = TRUE)))
+    # x$openwith=c('j1_2','j1_20')
+  }
 
 
   # create widget
