@@ -146,7 +146,7 @@ HTMLWidgets.widget({
 })
 .on("loaded.jstree",function(ev,data){
   
-  $('.jstree').jstree('select_node', 'j1_1');
+  //$('.jstree').jstree('select_node', 'j1_1');
 });
 
 
