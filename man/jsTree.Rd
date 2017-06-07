@@ -4,11 +4,13 @@
 \alias{jsTree}
 \title{Htmlwidget for the jsTree Javascript library}
 \usage{
-jsTree(obj, gh_repo = NULL, gh_branch = "master", width = NULL,
-  height = NULL, elementId = NULL)
+jsTree(obj, tooltips = NULL, nodestate = NULL, gh_repo = NULL,
+  gh_branch = "master", width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
 \item{obj}{character, vector of directory tree}
+
+\item{tooltips}{character, named vector of tooltips for elements in the tree, Default: NULL}
 
 \item{gh_repo}{character, github user/repository, Default: NULL}
 

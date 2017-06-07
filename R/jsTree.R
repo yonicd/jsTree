@@ -1,6 +1,7 @@
 #' @title Htmlwidget for the jsTree Javascript library
 #' @description Htmlwidget for the jsTree Javascript library
 #' @param obj character, vector of directory tree
+#' @param tooltips character, named vector of tooltips for elements in the tree, Default: NULL
 #' @param gh_repo character, github user/repository, Default: NULL
 #' @param gh_branch character, branch of gh_repo, Default: 'master'
 #' @details if gh_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
@@ -11,20 +12,22 @@
 #' @importFrom jsonlite toJSON
 #' @importFrom httr http_error
 #' @export
-jsTree <- function(obj, gh_repo=NULL,gh_branch='master', width = NULL, height = NULL, elementId = NULL) {
+jsTree <- function(obj, tooltips=NULL, nodestate=NULL, gh_repo=NULL, gh_branch='master', width = NULL, height = NULL, elementId = NULL) {
 
-  obj.in<-nest(obj,root=ifelse(!is.null(gh_repo),paste(gh_repo,gh_branch,sep='/'),getwd()))
+  obj.in<-nest(l         = obj,
+               root      = ifelse(!is.null(gh_repo),paste(gh_repo,gh_branch,sep='/'),'.'),
+               nodestate = nodestate,
+               tooltips  = tooltips
+               )
   
   # forward options using x
-  x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE))
-  # current_head<-show_repo(getwd(),showTree = FALSE)
-  # x$openwith=sprintf('j1_%s',which(current_head%in%list.files(getwd(),recursive = TRUE)))
-  # 
+  x = list(
+    data=jsonlite::toJSON(obj.in,auto_unbox = TRUE)
+    #tips=jsonlite::toJSON(as.list(setNames(tooltips,names(tooltips))))
+    )
+  
   if(!is.null(gh_repo)){
     x$uri='https://raw.githubusercontent.com/'
-    #current_head<-show_repo(getwd(),showTree = FALSE)
-    #x$openwith=sprintf('j1_%s',which(current_head%in%list.files(getwd(),recursive = TRUE)))
-    # x$openwith=c('j1_2','j1_20')
   }
 
 
