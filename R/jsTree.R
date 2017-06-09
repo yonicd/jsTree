@@ -2,32 +2,34 @@
 #' @description Htmlwidget for the jsTree Javascript library
 #' @param obj character, vector of directory tree
 #' @param tooltips character, named vector of tooltips for elements in the tree, Default: NULL
-#' @param gh_repo character, github user/repository, Default: NULL
-#' @param gh_branch character, branch of gh_repo, Default: 'master'
-#' @details if gh_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
+#' @param remote_repo character, remote user/repository, Default: NULL
+#' @param remote_branch character, branch of remote_repo, Default: 'master'
+#' @param vcs character, choose which version control system to attach (github, bitbucket, svn), Default: 'github'
+#' @details if remote_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
 #' @examples 
 #' jsTree(list.files(full.names = TRUE,recursive = TRUE))
-#' jsTree(ciderhouse::ls_github('tidyverse/reprex',recursive = TRUE),gh_repo = 'tidyverse/reprex')
+#' jsTree(vcs::ls_remote('tidyverse/reprex'),remote_repo = 'tidyverse/reprex')
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
 #' @importFrom httr http_error
 #' @export
-jsTree <- function(obj, tooltips=NULL, nodestate=NULL, gh_repo=NULL, gh_branch='master', width = NULL, height = NULL, elementId = NULL) {
+jsTree <- function(obj, tooltips=NULL, nodestate=NULL, remote_repo=NULL, remote_branch='master',vcs='github', width = NULL, height = NULL, elementId = NULL) {
 
   obj.in<-nest(l         = obj,
-               root      = ifelse(!is.null(gh_repo),paste(gh_repo,gh_branch,sep='/'),'.'),
+               root      = ifelse(!is.null(remote_repo),paste(remote_repo,remote_branch,sep='/'),'.'),
                nodestate = nodestate,
                tooltips  = tooltips
                )
   
   # forward options using x
-  x = list(
-    data=jsonlite::toJSON(obj.in,auto_unbox = TRUE)
-    #tips=jsonlite::toJSON(as.list(setNames(tooltips,names(tooltips))))
-    )
+  x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE))
   
-  if(!is.null(gh_repo)){
-    x$uri='https://raw.githubusercontent.com/'
+  if(!is.null(remote_repo)){
+    x$uri=switch(vcs,
+                 github=sprintf('https://raw.githubusercontent.com/%s/%s',remote_repo,remote_branch),
+                 bitbucket=sprintf('https://bitbucket.org/%s/raw/%s',remote_repo,remote_branch),
+                 svn=''
+                 )
   }
 
 

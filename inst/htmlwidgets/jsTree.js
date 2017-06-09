@@ -158,7 +158,11 @@ HTMLWidgets.widget({
         $(".get" + el.id).click(function() {
           var node=$('.jstree').jstree("get_selected", true);
           if(x.uri){
-              var uri=x.uri+$('.jstree').jstree().get_path(node[0], '/') + '?raw=true';
+            
+              var root_text=$('.jstree').jstree(true).get_node('ul > li:first').text;
+              pathtofile=$('.jstree').jstree().get_path(node[0], '/').replace(root_text,'');
+            
+              var uri=x.uri+ pathtofile + '?raw=true';
               loadXMLDoc(uri);
               textP.nodeValue=uri;
               
@@ -203,7 +207,10 @@ HTMLWidgets.widget({
                     "label": previewFile,
                     "action": function(obj){
                       if(x.uri){
-                              var uri=x.uri+tree.get_path($(node)[0], '/') + '?raw=true';
+                              var root_text=$('.jstree').jstree(true).get_node('ul > li:first').text;
+                              pathtofile=$('.jstree').jstree().get_path(node[0], '/').replace(root_text,'');
+                              
+                              var uri=x.uri + pathtofile + '?raw=true';
                               loadXMLDoc(uri);
                               textP.nodeValue=uri;
                               

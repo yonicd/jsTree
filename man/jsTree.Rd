@@ -4,25 +4,28 @@
 \alias{jsTree}
 \title{Htmlwidget for the jsTree Javascript library}
 \usage{
-jsTree(obj, tooltips = NULL, nodestate = NULL, gh_repo = NULL,
-  gh_branch = "master", width = NULL, height = NULL, elementId = NULL)
+jsTree(obj, tooltips = NULL, nodestate = NULL, remote_repo = NULL,
+  remote_branch = "master", vcs = "github", width = NULL, height = NULL,
+  elementId = NULL)
 }
 \arguments{
 \item{obj}{character, vector of directory tree}
 
 \item{tooltips}{character, named vector of tooltips for elements in the tree, Default: NULL}
 
-\item{gh_repo}{character, github user/repository, Default: NULL}
+\item{remote_repo}{character, remote user/repository, Default: NULL}
 
-\item{gh_branch}{character, branch of gh_repo, Default: 'master'}
+\item{remote_branch}{character, branch of remote_repo, Default: 'master'}
+
+\item{vcs}{character, choose which version control system to attach (github, bitbucket, svn), Default: 'github'}
 }
 \description{
 Htmlwidget for the jsTree Javascript library
 }
 \details{
-if gh_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
+if remote_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
 }
 \examples{
 jsTree(list.files(full.names = TRUE,recursive = TRUE))
-jsTree(ciderhouse::ls_github('tidyverse/reprex',recursive = TRUE),gh_repo = 'tidyverse/reprex')
+jsTree(vcs::ls_remote('tidyverse/reprex'),remote_repo = 'tidyverse/reprex')
 }
