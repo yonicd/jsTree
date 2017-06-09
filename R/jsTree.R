@@ -22,7 +22,7 @@ jsTree <- function(obj, tooltips=NULL, nodestate=NULL, remote_repo=NULL, remote_
                )
   
   # forward options using x
-  x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE))
+  x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE),vcs=vcs)
   
   if(!is.null(remote_repo)){
     x$uri=switch(vcs,

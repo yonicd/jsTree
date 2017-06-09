@@ -70,7 +70,7 @@ HTMLWidgets.widget({
                   getBtn.appendChild(getText);
                   btnsDiv.appendChild(expandBtn);
                   btnsDiv.appendChild(collapseBtn);
-        if(x.uri) btnsDiv.appendChild(getBtn);
+        if(x.uri&&x.vcs!='svn') btnsDiv.appendChild(getBtn);
                   navBar.appendChild(searchForm);
                   navBar.appendChild(btnsDiv);
                   navBar.appendChild(mainDiv);
@@ -82,7 +82,7 @@ HTMLWidgets.widget({
   
       //define the tree plugins
         var treePlugins=['search','checkbox'];
-        if(x.uri) treePlugins.push('contextmenu');
+        if(x.uri&&x.vcs!='svn') treePlugins.push('contextmenu');
   
       //create the tree    
       var tree = $('.jstree' + el.id).jstree({
@@ -157,7 +157,7 @@ HTMLWidgets.widget({
       //attach get function to preview button
         $(".get" + el.id).click(function() {
           var node=$('.jstree').jstree("get_selected", true);
-          if(x.uri){
+          if(x.uri&&x.vcs!='svn'){
             
               var root_text=$('.jstree').jstree(true).get_node('ul > li:first').text;
               pathtofile=$('.jstree').jstree().get_path(node[0], '/').replace(root_text,'');
@@ -206,7 +206,7 @@ HTMLWidgets.widget({
                   "preview": {
                     "label": previewFile,
                     "action": function(obj){
-                      if(x.uri){
+                      if(x.uri&&x.vcs!='svn'){
                               var root_text=$('.jstree').jstree(true).get_node('ul > li:first').text;
                               pathtofile=$('.jstree').jstree().get_path(node[0], '/').replace(root_text,'');
                               
