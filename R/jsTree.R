@@ -16,7 +16,7 @@
 jsTree <- function(obj, tooltips=NULL, nodestate=NULL, remote_repo=NULL, remote_branch='master',vcs='github', width = NULL, height = NULL, elementId = NULL) {
 
   obj.in<-nest(l         = obj,
-               root      = ifelse(!is.null(remote_repo),paste(remote_repo,remote_branch,sep='/'),'.'),
+               root      = ifelse(!is.null(remote_repo),ifelse(vcs=='svn',remote_repo,paste(remote_repo,remote_branch,sep='/')),'.'),
                nodestate = nodestate,
                tooltips  = tooltips
                )
