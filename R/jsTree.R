@@ -28,7 +28,7 @@ jsTree <- function(obj, tooltips=NULL, nodestate=NULL, remote_repo=NULL, remote_
     x$uri=switch(vcs,
                  github=sprintf('https://raw.githubusercontent.com/%s/%s',remote_repo,remote_branch),
                  bitbucket=sprintf('https://bitbucket.org/%s/raw/%s',remote_repo,remote_branch),
-                 svn=''
+                 svn='./'
                  )
   }
 
