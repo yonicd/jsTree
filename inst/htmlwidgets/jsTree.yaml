@@ -9,9 +9,9 @@ dependencies:
     script: mobile-console.min.js
     stylesheet: style/mobile-console.min.css
   - name: bootstrap
-    version: 3.3.5
+    version: 3.3.7
     src: htmlwidgets/lib/bootstrap
-    script: bootstrap.min.js
+    script: js/bootstrap.min.js
     stylesheet: css/bootstrap.min.css
   - name: fontawesome
     version: 4.5.0

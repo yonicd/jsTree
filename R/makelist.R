@@ -6,11 +6,11 @@ makeList <- function(x,tooltips) {
     lapply(names(listSplit), function(y){
       l2<-listSplit[[y]]
       if(all(is.na(l2[!names(l2)%in%c('nodestate')]))){
-        lout=list(text = y,icon='fa fa-file-o',state=list(selected=l2$nodestate))
+        lout=list(text = y,icon='glyphicon glyphicon-file text-info',state=list(selected=l2$nodestate))
         if(any(y%in%names(tooltips))) lout$a_attr=list(title=tooltips[grep(y,names(tooltips),value=TRUE)])
         lout
       }else{
-        lout=list(text = y,icon='fa fa-folder', children = makeList(l2,tooltips))
+        lout=list(text = y,children = makeList(l2,tooltips))
         if(any(y%in%names(tooltips))) lout$a_attr=list(title=tooltips[grep(y,names(tooltips),value=TRUE)])
         lout
       }
@@ -18,7 +18,7 @@ makeList <- function(x,tooltips) {
   } else {
     if(!all(is.na(x[,1]))){nms <- x[,1]
     lapply(seq_along(nms), function(y){
-      lout=list(text = nms[y],icon='fa fa-file-o',state=list(selected=x$nodestate[y]))
+      lout=list(text = nms[y],icon='glyphicon glyphicon-file text-info',state=list(selected=x$nodestate[y]))
       nm=nms[y]
       if(any(nm%in%names(tooltips))) lout$a_attr=list(title=tooltips[grep(nm,names(tooltips),value=TRUE)])
       lout
