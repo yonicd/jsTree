@@ -17,21 +17,21 @@ server <- function(input, output,session) {
   })
   
   output$tree <- jsTree::renderJsTree({
-    obj=ciderhouse::show_repo(input$f1,showTree = FALSE)
-    jsTree::jsTree(obj = obj,gh_repo = input$f1,gh_branch = 'master')
+    obj=vcs::ls_remote(input$f1,vcs = 'github')
+    jsTree::jsTree(obj = obj,remote_repo = input$f1,remote_branch = 'master')
   })
 
    observeEvent(c(input$createRepo),{
      f2<-gsub(sprintf('%s/%s',input$f1,'master'),'',network$tree)
      if(length(f2)>0){
        if(dir.exists(sprintf('%s/.git',input$dirOutput))){
-         ciderhouse::sparse_github(repo_url = sprintf('https://github.com/%s.git',input$f1),
+         vcs::sparse_checkout(repo_url = sprintf('https://github.com/%s.git',input$f1),
                                    dirs = f2,
                                    repo = input$dirOutput,
                                    create = FALSE,
                                    append = FALSE)
        }else{
-         ciderhouse::sparse_github(repo_url = sprintf('https://github.com/%s.git',input$f1),
+         vcs::sparse_checkout(repo_url = sprintf('https://github.com/%s.git',input$f1),
                                    dirs = f2,
                                    repo = input$dirOutput,
                                    create = TRUE)

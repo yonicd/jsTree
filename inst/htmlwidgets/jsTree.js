@@ -208,7 +208,7 @@ HTMLWidgets.widget({
                     "action": function(obj){
                       if(x.uri&&x.vcs!='svn'){
                               var root_text=$('.jstree').jstree(true).get_node('ul > li:first').text;
-                              pathtofile=$('.jstree').jstree().get_path(node[0], '/').replace(root_text,'');
+                              var pathtofile=tree.get_path($(node)[0], '/').replace(root_text,'');
                               
                               var uri=x.uri + pathtofile + '?raw=true';
                               loadXMLDoc(uri);
