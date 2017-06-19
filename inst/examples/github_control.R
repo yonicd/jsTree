@@ -16,9 +16,20 @@ server <- function(input, output,session) {
     })    
   })
   
+  observeEvent(input$f1,{
+    output$results <- renderPrint({
+      str.out=''
+      return(str.out)
+    })    
+  })
+  
   output$tree <- jsTree::renderJsTree({
-    obj=vcs::ls_remote(input$f1,vcs = 'github')
-    jsTree::jsTree(obj = obj,remote_repo = input$f1,remote_branch = 'master')
+    vcs_type='github'
+    if(input$f1=='~/projects/reprex_sparse') vcs_type='git'
+    obj=vcs::ls_remote(input$f1,vcs = vcs_type)
+    opts=NULL
+    if(dir.exists(input$f1)) opts=list(nodestate=vcs::diff_head(input$f1,vcs='git',show = FALSE))
+    vcs::navigate_remote(input$f1,vcs=vcs_type,output.opts = opts)
   })
 
    observeEvent(c(input$createRepo),{
@@ -38,14 +49,18 @@ server <- function(input, output,session) {
        }
        }
    })
-  
+ 
+   output$chosen=renderUI({
+     verbatimTextOutput(outputId = "results")
+   })
+
 }
 
 ui <- fluidPage(
-         selectInput(inputId = 'f1',label = 'choose repo',choices = c('yonicd/ciderhouse','tidyverse/ggplot2','tidyverse/reprex'),selected = 'yonicd/ciderhouse'),
+         selectInput(inputId = 'f1',label = 'choose repo',choices = c('yonicd/ciderhouse','tidyverse/ggplot2','tidyverse/reprex','~/projects/reprex_sparse'),selected = '~/projects/reprex_sparse'),
          actionButton('createRepo','create sparse checkout'),
          textInput('dirOutput','',placeholder = 'path of checkout'),
-         verbatimTextOutput(outputId = "results"),
+         uiOutput('chosen'),
          jsTree::jsTreeOutput(outputId = 'tree')
 )
 
