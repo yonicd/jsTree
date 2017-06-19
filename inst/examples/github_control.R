@@ -57,9 +57,10 @@ server <- function(input, output,session) {
 }
 
 ui <- fluidPage(
-         selectInput(inputId = 'f1',label = 'choose repo',choices = c('yonicd/ciderhouse','tidyverse/ggplot2','tidyverse/reprex','~/projects/reprex_sparse'),selected = '~/projects/reprex_sparse'),
+         selectInput(inputId = 'f1',label = 'choose repo',choices = c('yonicd/ciderhouse','tidyverse/ggplot2','tidyverse/reprex','~/projects/reprex_sparse'),selected = 'tidyverse/reprex'),
          actionButton('createRepo','create sparse checkout'),
          textInput('dirOutput','',placeholder = 'path of checkout'),
+
          uiOutput('chosen'),
          jsTree::jsTreeOutput(outputId = 'tree')
 )
