@@ -12,7 +12,7 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
-      mobileConsole.show();
+      mobileConsole.hide();
       
       mobileConsole.options({
     		showOnError: false,
@@ -50,6 +50,7 @@ HTMLWidgets.widget({
         var collapseText = document.createTextNode("Collapse");
         var getText      = document.createTextNode("Preview File");
         var textP        = document.createTextNode('');
+
       
       // add attributes
         navBar.className      = 'navBar' + el.id;
@@ -169,7 +170,11 @@ HTMLWidgets.widget({
               previewDiv.appendChild(previewPre);
               container.appendChild(previewDiv);
               el.appendChild(container);
+              
+            //debugger;
+            //$('#preview' + el.id).markRegExp('Desc');
             }
+            
           });
       
       //function to retrieve files from remote addresses
@@ -224,7 +229,7 @@ HTMLWidgets.widget({
   
           return items;
     }
-    
+
       },
 
       resize: function(width, height) {

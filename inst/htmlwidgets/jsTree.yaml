@@ -3,6 +3,10 @@ dependencies:
     version: 3.2.1
     src: htmlwidgets/lib/jquery
     script: jquery.min.js
+  - name: mark
+    version: 8.9.1
+    src: htmlwidgets/lib/mark
+    script: jquery.mark.js
   - name: js-mobile-console
     version: 0.3.1
     src: htmlwidgets/lib/js-mobile-console
