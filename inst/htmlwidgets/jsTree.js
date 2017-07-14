@@ -12,7 +12,7 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
-      mobileConsole.hide();
+      mobileConsole.show();
       
       mobileConsole.options({
     		showOnError: false,
@@ -38,7 +38,10 @@ HTMLWidgets.widget({
         var mainDiv      = document.createElement("DIV");
         var btnsDiv      = document.createElement("DIV");
         var searchForm   = document.createElement("form");
+        
         var searchInput  = document.createElement("input");
+        var searchInputPreview  = document.createElement("input");
+        
         var expandBtn    = document.createElement("BUTTON");
         var collapseBtn  = document.createElement("BUTTON");
         var getBtn       = document.createElement("BUTTON");
@@ -57,8 +60,16 @@ HTMLWidgets.widget({
         container.className   = 'container' + el.id;
         mainDiv.className     = 'jstree' + el.id;
         searchForm.className  = 's' + el.id;
+        
         searchInput.setAttribute('type',"search");
         searchInput.className = 'q' + el.id;
+        
+        searchInputPreview.setAttribute('type',"text");
+        searchInputPreview.setAttribute('placeholder',"Search in text");
+        searchInputPreview.className = 'qprev' + el.id;
+        
+        
+        
         expandBtn.className   = 'expand' + el.id;
         collapseBtn.className = 'toCollapse' + el.id;
         getBtn.className      = 'get' + el.id;
@@ -80,6 +91,7 @@ HTMLWidgets.widget({
       //attach elements to preview container
                   titleP.appendChild(textP);
                   previewDiv.appendChild(titleP);
+                  previewDiv.appendChild(searchInputPreview);
   
       //define the tree plugins
         var treePlugins=['search','checkbox'];
@@ -171,8 +183,12 @@ HTMLWidgets.widget({
               container.appendChild(previewDiv);
               el.appendChild(container);
               
-            //debugger;
-            //$('#preview' + el.id).markRegExp('Desc');
+              $('.qprev'+el.id).on("input", mark);
+              
+              if(x.forcekey){
+                $('.qprev'+el.id).val(x.forcekey);
+                //$('#preview' + el.id).mark(x.forcekey);
+              }
             }
             
           });
@@ -230,6 +246,24 @@ HTMLWidgets.widget({
           return items;
     }
 
+  var mark = function() {
+    // Read the keyword
+    var keyword = $('.qprev'+el.id).val();
+    // Determine selected options
+    var options = {"separateWordSearch":true,"diacritics":true,"debug":false};
+    /*
+    $("input[name='opt[]']").each(function() {
+      options[$(this).val()] = $(this).is(":checked");
+    });*/
+
+    // Remove previous marked elements and mark
+    // the new keyword inside the context
+    $('#preview' + el.id).unmark({
+      done: function() {
+        $('#preview' + el.id).mark(keyword,options);
+      }
+    });
+  };
       },
 
       resize: function(width, height) {

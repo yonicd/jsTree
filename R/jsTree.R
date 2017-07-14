@@ -2,10 +2,13 @@
 #' @description Htmlwidget for the jsTree Javascript library
 #' @param obj character, vector of directory tree
 #' @param tooltips character, named vector of tooltips for elements in the tree, Default: NULL
+#' @param nodestate boolean, vector the length of obj that initializes tree open to true values, Default: NULL
+#' @param preview.search character, Search term to initialize to in the preview pane searchbox, Default: NULL
 #' @param remote_repo character, remote user/repository, Default: NULL
 #' @param remote_branch character, branch of remote_repo, Default: 'master'
 #' @param vcs character, choose which version control system to attach (github, bitbucket, svn), Default: 'github'
 #' @details if remote_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
+#' preview.search is only relevant for vcs in (github,bitbucket) where file previewing is available
 #' @examples 
 #' jsTree(list.files(full.names = TRUE,recursive = TRUE))
 #' jsTree(vcs::ls_remote('tidyverse/reprex'),remote_repo = 'tidyverse/reprex')
@@ -13,7 +16,7 @@
 #' @importFrom jsonlite toJSON
 #' @importFrom httr http_error
 #' @export
-jsTree <- function(obj, tooltips=NULL, nodestate=NULL, remote_repo=NULL, remote_branch='master',vcs='github', width = NULL, height = NULL, elementId = NULL) {
+jsTree <- function(obj, tooltips=NULL, nodestate=NULL,preview.search=NULL, remote_repo=NULL, remote_branch='master',vcs='github', width = NULL, height = NULL, elementId = NULL) {
 
   obj.in<-nest(l         = obj,
                root      = ifelse(!is.null(remote_repo),ifelse(vcs=='svn',remote_repo,paste(remote_repo,remote_branch,sep='/')),'.'),
@@ -23,6 +26,8 @@ jsTree <- function(obj, tooltips=NULL, nodestate=NULL, remote_repo=NULL, remote_
   
   # forward options using x
   x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE),vcs=vcs)
+  
+  if(!is.null(preview.search)) x$forcekey=preview.search
   
   if(!is.null(remote_repo)){
     x$uri=switch(vcs,

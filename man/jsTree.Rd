@@ -4,14 +4,18 @@
 \alias{jsTree}
 \title{Htmlwidget for the jsTree Javascript library}
 \usage{
-jsTree(obj, tooltips = NULL, nodestate = NULL, remote_repo = NULL,
-  remote_branch = "master", vcs = "github", width = NULL, height = NULL,
-  elementId = NULL)
+jsTree(obj, tooltips = NULL, nodestate = NULL, preview.search = NULL,
+  remote_repo = NULL, remote_branch = "master", vcs = "github",
+  width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
 \item{obj}{character, vector of directory tree}
 
 \item{tooltips}{character, named vector of tooltips for elements in the tree, Default: NULL}
+
+\item{nodestate}{boolean, vector the length of obj that initializes tree open to true values, Default: NULL}
+
+\item{preview.search}{character, Search term to initialize to in the preview pane searchbox, Default: NULL}
 
 \item{remote_repo}{character, remote user/repository, Default: NULL}
 
@@ -24,6 +28,7 @@ Htmlwidget for the jsTree Javascript library
 }
 \details{
 if remote_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
+preview.search is only relevant for vcs in (github,bitbucket) where file previewing is available
 }
 \examples{
 jsTree(list.files(full.names = TRUE,recursive = TRUE))
