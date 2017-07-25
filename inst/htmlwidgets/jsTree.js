@@ -186,7 +186,7 @@ HTMLWidgets.widget({
             
       });
       
-    function previewCallback(data){
+        function previewCallback(data){
       document.getElementById("preview" + el.id).innerHTML = data;
       if(x.forcekey){
         $('.qprev'+el.id).val(x.forcekey);
@@ -207,7 +207,7 @@ HTMLWidgets.widget({
           xmlhttp.send();
         }
 
-      //custommenu function (http://jsfiddle.net/dpzy8xjb/)
+      //custom menu function (http://jsfiddle.net/dpzy8xjb/)
         function customMenu(node) {
           var tree = $('.jstree').jstree(true);
           var ID = $(node).attr('id');
@@ -253,10 +253,6 @@ HTMLWidgets.widget({
     var keyword = $('.qprev'+el.id).val();
     // Determine selected options
     var options = {"separateWordSearch":true,"diacritics":true,"debug":false};
-    /*
-    $("input[name='opt[]']").each(function() {
-      options[$(this).val()] = $(this).is(":checked");
-    });*/
 
     // Remove previous marked elements and mark
     // the new keyword inside the context

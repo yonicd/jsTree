@@ -7,6 +7,7 @@ Description: Create and customize interactive trees using the jQuery 'jsTree'
     directly from the R console, from 'RStudio', in Shiny apps and R Markdown documents.
 Depends: R (>= 2.3.0)
 Imports: htmlwidgets,jsonlite,plyr
+Suggests: dplyr, reshape2
 License: GPL-2 | GPL-3
 Encoding: UTF-8
 LazyData: true
