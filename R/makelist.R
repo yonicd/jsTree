@@ -1,4 +1,3 @@
-#'@export
 makeList <- function(x,tooltips) {
   idx <- is.na(x[,2])
   if (ncol(x) > 2 && sum(idx) != nrow(x)){
@@ -27,7 +26,6 @@ makeList <- function(x,tooltips) {
   }
 }
 
-#'@export
 #'@importFrom plyr rbind.fill
 nest<-function(l,root='root',nodestate=NULL,tooltips=NA){
   df=data.frame(V0=root,

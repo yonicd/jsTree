@@ -7,14 +7,17 @@
 #' @param remote_repo character, remote user/repository, Default: NULL
 #' @param remote_branch character, branch of remote_repo, Default: 'master'
 #' @param vcs character, choose which version control system to attach (github, bitbucket, svn), Default: 'github'
+#' @param width,height Must be a valid CSS unit (like \code{'100\%'},
+#'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
+#'   string and have \code{'px'} appended.
+#' @param elementId The input slot that will be used to access the element.
 #' @details if remote_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
 #' preview.search is only relevant for vcs in (github,bitbucket) where file previewing is available
-#' @examples 
+#' @examples
+#' if(interactive())
 #' jsTree(list.files(full.names = TRUE,recursive = TRUE))
-#' jsTree(vcs::ls_remote('tidyverse/reprex'),remote_repo = 'tidyverse/reprex')
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
-#' @importFrom httr http_error
 #' @export
 jsTree <- function(obj, tooltips=NULL, nodestate=NULL,preview.search=NULL, remote_repo=NULL, remote_branch='master',vcs='github', width = NULL, height = NULL, elementId = NULL) {
 

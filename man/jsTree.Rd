@@ -22,6 +22,12 @@ jsTree(obj, tooltips = NULL, nodestate = NULL, preview.search = NULL,
 \item{remote_branch}{character, branch of remote_repo, Default: 'master'}
 
 \item{vcs}{character, choose which version control system to attach (github, bitbucket, svn), Default: 'github'}
+
+\item{width, height}{Must be a valid CSS unit (like \code{'100\%'},
+\code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
+string and have \code{'px'} appended.}
+
+\item{elementId}{The input slot that will be used to access the element.}
 }
 \description{
 Htmlwidget for the jsTree Javascript library
@@ -31,6 +37,6 @@ if remote_repo is given a preview pane of a selected file from the tree will app
 preview.search is only relevant for vcs in (github,bitbucket) where file previewing is available
 }
 \examples{
+if(interactive())
 jsTree(list.files(full.names = TRUE,recursive = TRUE))
-jsTree(vcs::ls_remote('tidyverse/reprex'),remote_repo = 'tidyverse/reprex')
 }

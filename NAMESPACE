@@ -2,10 +2,7 @@
 
 export(jsTree)
 export(jsTreeOutput)
-export(makeList)
-export(nest)
 export(renderJsTree)
 import(htmlwidgets)
-importFrom(httr,http_error)
 importFrom(jsonlite,toJSON)
 importFrom(plyr,rbind.fill)
