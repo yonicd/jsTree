@@ -12,7 +12,7 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
-      mobileConsole.show();
+      mobileConsole.hide();
       
       mobileConsole.options({
     		showOnError: false,
@@ -181,25 +181,26 @@ HTMLWidgets.widget({
           textP.nodeValue=uri;
           $('.qprev'+el.id).on("input",mark);
           
-          loadXMLDoc(uri);
-          
-          setTimeout(function(){ 
-            if(x.forcekey){
-              $('.qprev'+el.id).val(x.forcekey);
-              $('.qprev'+el.id).trigger('input');
-            }
-          }, 1000);
+          loadXMLDoc(uri,previewCallback);
         }
             
       });
       
+    function previewCallback(data){
+      document.getElementById("preview" + el.id).innerHTML = data;
+      if(x.forcekey){
+        $('.qprev'+el.id).val(x.forcekey);
+        $('.qprev'+el.id).trigger('input');
+      }
+      
+    }
+      
       //function to retrieve files from remote addresses
-        function loadXMLDoc(uri) {
+        function loadXMLDoc(uri,callback) {
           var xmlhttp = new XMLHttpRequest();
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("preview" + el.id).innerHTML =
-              this.responseText;
+              callback(this.responseText);
             }
           };
           xmlhttp.open("GET", uri, true);
@@ -232,19 +233,13 @@ HTMLWidgets.widget({
                               var pathtofile=tree.get_path($(node)[0], '/').replace(root_text,'');
                               
                               var uri=x.uri + pathtofile + '?raw=true';
-                              loadXMLDoc(uri);
                               textP.nodeValue=uri;
                               
                               previewDiv.appendChild(previewPre);
                               container.appendChild(previewDiv);
                               el.appendChild(container);
                               
-                              setTimeout(function(){ 
-                                if(x.forcekey){
-                                  $('.qprev'+el.id).val(x.forcekey);
-                                  $('.qprev'+el.id).trigger('input');
-                                }
-                              }, 1000);
+                              loadXMLDoc(uri,previewCallback);
                             }
                     }
                   }
