@@ -168,30 +168,30 @@ HTMLWidgets.widget({
         });
       
       //attach get function to preview button
-        $(".get" + el.id).click(function() {
-          var node=$('.jstree').jstree("get_selected", true);
-          if(x.uri&&x.vcs!='svn'){
-            
-              var root_text=$('.jstree').jstree(true).get_node('ul > li:first').text;
-              pathtofile=$('.jstree').jstree().get_path(node[0], '/').replace(root_text,'');
-            
-              var uri=x.uri+ pathtofile + '?raw=true';
-              loadXMLDoc(uri);
-              textP.nodeValue=uri;
-              
-              previewDiv.appendChild(previewPre);
-              container.appendChild(previewDiv);
-              el.appendChild(container);
-              
-              $('.qprev'+el.id).on("input", mark);
-              
-              if(x.forcekey){
-                $('.qprev'+el.id).val(x.forcekey);
-                //$('#preview' + el.id).mark(x.forcekey);
-              }
+    $(".get" + el.id).click(function() {
+      var node=$('.jstree').jstree("get_selected", true);
+        if(x.uri&&x.vcs!='svn'){
+          var root_text=$('.jstree').jstree(true).get_node('ul > li:first').text;
+          pathtofile=$('.jstree').jstree().get_path(node[0], '/').replace(root_text,'');
+          previewDiv.appendChild(previewPre);
+          container.appendChild(previewDiv);
+          el.appendChild(container);
+
+          var uri=x.uri+ pathtofile + '?raw=true';
+          textP.nodeValue=uri;
+          $('.qprev'+el.id).on("input",mark);
+          
+          loadXMLDoc(uri);
+          
+          setTimeout(function(){ 
+            if(x.forcekey){
+              $('.qprev'+el.id).val(x.forcekey);
+              $('.qprev'+el.id).trigger('input');
             }
+          }, 1000);
+        }
             
-          });
+      });
       
       //function to retrieve files from remote addresses
         function loadXMLDoc(uri) {
@@ -238,6 +238,13 @@ HTMLWidgets.widget({
                               previewDiv.appendChild(previewPre);
                               container.appendChild(previewDiv);
                               el.appendChild(container);
+                              
+                              setTimeout(function(){ 
+                                if(x.forcekey){
+                                  $('.qprev'+el.id).val(x.forcekey);
+                                  $('.qprev'+el.id).trigger('input');
+                                }
+                              }, 1000);
                             }
                     }
                   }
@@ -264,6 +271,7 @@ HTMLWidgets.widget({
       }
     });
   };
+
       },
 
       resize: function(width, height) {
