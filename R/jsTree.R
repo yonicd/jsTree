@@ -69,6 +69,8 @@
 #' @export
 jsTree <- function(obj, tooltips=NULL, nodestate=NULL, ... , width = NULL, height = NULL, elementId = NULL) {
 
+  preview.search=NULL
+  
   list2env(list(...),envir = environment())
   
   if(!'remote_repo'%in%names(match.call())) remote_repo = NULL
