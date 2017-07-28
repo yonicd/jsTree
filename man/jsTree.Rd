@@ -4,9 +4,8 @@
 \alias{jsTree}
 \title{Htmlwidget for the jsTree Javascript library}
 \usage{
-jsTree(obj, tooltips = NULL, nodestate = NULL, preview.search = NULL,
-  remote_repo = NULL, remote_branch = "master", vcs = "github",
-  width = NULL, height = NULL, elementId = NULL)
+jsTree(obj, tooltips = NULL, nodestate = NULL, ..., width = NULL,
+  height = NULL, elementId = NULL)
 }
 \arguments{
 \item{obj}{character, vector of directory tree}
@@ -15,13 +14,7 @@ jsTree(obj, tooltips = NULL, nodestate = NULL, preview.search = NULL,
 
 \item{nodestate}{boolean, vector the length of obj that initializes tree open to true values, Default: NULL}
 
-\item{preview.search}{character, Search term to initialize to in the preview pane searchbox, Default: NULL}
-
-\item{remote_repo}{character, remote user/repository, Default: NULL}
-
-\item{remote_branch}{character, branch of remote_repo, Default: 'master'}
-
-\item{vcs}{character, choose which version control system to attach (github, bitbucket, svn), Default: 'github'}
+\item{...}{parameters that are passed to the vcs package (see details)}
 
 \item{width, height}{Must be a valid CSS unit (like \code{'100\%'},
 \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
@@ -33,6 +26,12 @@ string and have \code{'px'} appended.}
 Htmlwidget for the jsTree Javascript library
 }
 \details{
+parameters in ... that can be passed on to the vcs package are: 
+remote_repo a character object that defines the remote user/repository,
+remote_branch character object that defines the branch of remote_repo (ussually 'master'),
+vcs character object that defines for vcs which version control system to attach (github, bitbucket, svn)
+preview.search character object that defines a search term to initialize to in the preview pane searchbox
+
 if remote_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
 preview.search is only relevant for vcs in (github,bitbucket) where file previewing is available
 }

@@ -3,16 +3,20 @@
 #' @param obj character, vector of directory tree
 #' @param tooltips character, named vector of tooltips for elements in the tree, Default: NULL
 #' @param nodestate boolean, vector the length of obj that initializes tree open to true values, Default: NULL
-#' @param preview.search character, Search term to initialize to in the preview pane searchbox, Default: NULL
-#' @param remote_repo character, remote user/repository, Default: NULL
-#' @param remote_branch character, branch of remote_repo, Default: 'master'
-#' @param vcs character, choose which version control system to attach (github, bitbucket, svn), Default: 'github'
+#' @param ... parameters that are passed to the vcs package (see details)
 #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
 #' @param elementId The input slot that will be used to access the element.
-#' @details if remote_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
+#' @details parameters in ... that can be passed on to the vcs package are: 
+#' remote_repo a character object that defines the remote user/repository,
+#' remote_branch character object that defines the branch of remote_repo (ussually 'master'),
+#' vcs character object that defines for vcs which version control system to attach (github, bitbucket, svn)
+#' preview.search character object that defines a search term to initialize to in the preview pane searchbox
+#' 
+#' if remote_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
 #' preview.search is only relevant for vcs in (github,bitbucket) where file previewing is available
+#' 
 #' @examples
 #' if(interactive()){
 #' 
@@ -63,8 +67,14 @@
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
 #' @export
-jsTree <- function(obj, tooltips=NULL, nodestate=NULL,preview.search=NULL, remote_repo=NULL, remote_branch='master',vcs='github', width = NULL, height = NULL, elementId = NULL) {
+jsTree <- function(obj, tooltips=NULL, nodestate=NULL, ... , width = NULL, height = NULL, elementId = NULL) {
 
+  list2env(list(...),envir = environment())
+  
+  if(!'remote_repo'%in%names(match.call())) remote_repo = NULL
+  if(!'vcs'%in%names(match.call())) vcs <- 'github'
+  if(!'remote_branch'%in%names(match.call())) remote_branch <- 'master'
+  
   obj.in<-nest(l         = obj,
                root      = ifelse(!is.null(remote_repo),ifelse(vcs=='svn',remote_repo,paste(remote_repo,remote_branch,sep='/')),'.'),
                nodestate = nodestate,
@@ -74,7 +84,7 @@ jsTree <- function(obj, tooltips=NULL, nodestate=NULL,preview.search=NULL, remot
   # forward options using x
   x = list(data=jsonlite::toJSON(obj.in,auto_unbox = TRUE),vcs=vcs)
   
-  if(!is.null(preview.search)) x$forcekey=preview.search
+  if('preview.search'%in%names(match.call())) x$forcekey=preview.search
   
   if(!is.null(remote_repo)){
     x$uri=switch(vcs,
