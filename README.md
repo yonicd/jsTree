@@ -9,7 +9,7 @@ devtools::install_github('metrumresearchgroup/jsTree')
 devtools::install_github('metrumresearchgroup/vcs')
 
 #get repo master branch directory structure
-  vcs::navigate_remote('tidyverse/purrr')
+  vcs::navigate_remote('tidyverse/ggplot2')
 ```
 
 ![](https://github.com/yonicd/jsTree/blob/master/Miscellaneous/preview_gh_example.gif?raw=true)
