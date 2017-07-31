@@ -13,3 +13,7 @@ devtools::install_github('metrumresearchgroup/vcs')
 ```
 
 ![](https://github.com/yonicd/jsTree/blob/master/Miscellaneous/preview_gh_example.gif?raw=true)
+
+### Search text in files of a repo without cloning it
+
+![](https://github.com/yonicd/jsTree/blob/master/Miscellaneous/jstree_vcs_grepr.gif?raw=true)
