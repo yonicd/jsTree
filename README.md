@@ -5,7 +5,6 @@
 ### Preview a github repo without cloning it
 
 ```r
-devtools::install_github('yonicd/ciderhouse')
 devtools::install_github('yonicd/jsTree')
 
 #get repo master branch directory structure

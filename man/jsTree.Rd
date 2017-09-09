@@ -56,7 +56,6 @@ nested_data <- us_lvl\%>\%left_join(state_lvl,by='state.name')
 
 #collapse columns to text (with sep "/")
 nested_string <- apply(nested_data,1,paste,collapse='/')
-
 jsTree(nested_string)
 
 #initialize tree with checked boxes for certain fields
