@@ -1,3 +1,5 @@
+[![Travis-CI Build Status](https://travis-ci.org/metrumresearchgroup/jsTree.svg?branch=master)](https://travis-ci.org/metrumresearchgroup/jsTree)
+
 # jsTree
 
 ## Examples
