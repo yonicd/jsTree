@@ -34,48 +34,44 @@ preview.search character object that defines a search term to initialize to in t
 
 if remote_repo is given a preview pane of a selected file from the tree will appear to the right of the tree.
 preview.search is only relevant for vcs in (github,bitbucket) where file previewing is available
+
+For more information on the vcs package go to \url{https://github.com/metrumresearchgroup/vcs}
 }
 \examples{
 if(interactive()){
 
-require(reshape2)
-require(dplyr)
-data(state)
-
-#country level data
-us_lvl <- data.frame(state.region,state.division,state.name)
-
-#state level data (melted to long data.frame)
-state_lvl <- state.x77\%>\%
-data.frame\%>\%
-mutate(state.name=row.names(.))\%>\%
-melt(.,'state.name')
-
-#nest state level in country level
-nested_data <- us_lvl\%>\%left_join(state_lvl,by='state.name')
+data(states)
+data(state_bird)
 
 #collapse columns to text (with sep "/")
-nested_string <- apply(nested_data,1,paste,collapse='/')
+nested_string <- apply(states,1,paste,collapse='/')
 jsTree(nested_string)
 
+# Add tooltips to state names with the state bird 
+jsTree(nested_string,tooltips = state_bird)
+
 #initialize tree with checked boxes for certain fields
-nodestate1=nested_data$variable=='Area'
+nodestate1 <- states$variable=='Area'
 jsTree(nested_string,nodestate=nodestate1)
 
-nodestate2=nested_data$variable=='Area'&grepl('^M',nested_data$state.name)
+nodestate2 <- states$variable=='Area'&grepl('^M',states$state.name)
 jsTree(nested_string,nodestate=nodestate2)
 
-nodestate3=nested_data$variable\%in\%c('Murder')&nested_data$value>=10
-nodestate4=nested_data$variable\%in\%c('HS.Grad')&nested_data$value<=55
+nodestate3 <- states$variable \%in\% c('Murder') & states$value >= 10
+nodestate4 <- states$variable \%in\% c('HS.Grad') & states$value <= 55
 jsTree(nested_string,nodestate=nodestate3|nodestate4)
 
 #change the order of the hierarchy
-nested_string2 <- apply(nested_data[,c(4,1,2,3,5)],1,paste,collapse='/')
+nested_string2 <- apply(states[,c(4,1,2,3,5)],1,paste,collapse='/')
 
 jsTree(nested_string2)
 
 #use jsTree to visualize folder structure
+
+jsTree(list.files(full.names = TRUE,recursive = FALSE))
+
 \dontrun{
+# This may be too long for example if running from ~.
 jsTree(list.files(full.names = TRUE,recursive = TRUE))
 }
 }

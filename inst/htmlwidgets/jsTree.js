@@ -108,7 +108,7 @@ HTMLWidgets.widget({
         .on("search.jstree", function(ev, data) { //http://jsfiddle.net/2kwkh2uL/2188/
           data.nodes.children("a").each(function (idx, node) {
           var h = node.innerHTML;        
-          var orig = $('.jstree').jstree(true).get_node(node).text;
+          var orig = $('.jstree' + el.id).jstree(true).get_node(node).text;
           var txt = orig.replace(new RegExp("(" + data.str + ")", "gi"), function(a,b){
             //debugger;
               return '<span style="color:green">' + b + '</span>';
@@ -119,7 +119,7 @@ HTMLWidgets.widget({
         .on("clear_search.jstree", function(ev, data) {
             $.each(data.nodes, function (idx, node) {
                 var h = node.innerHTML;
-                var orig = $('.jstree').jstree(true).get_node(node.id).text;
+                var orig = $('.jstree' + el.id).jstree(true).get_node(node.id).text;
                 h = h.replace(new RegExp('<span style="color:green">(.*)</span>', 'gi'),     function (a, b) {
                     return b; 
                 });
@@ -132,8 +132,8 @@ HTMLWidgets.widget({
           //for(i = 0, j = data.selected.length; i < j; i++) {
           //    nodes.push(data.instance.get_node(data.selected[i]).text);
           //}
-          var node=$('.jstree').jstree("get_selected", true);
-          var nodes=node.map(function(n){return $('.jstree').jstree().get_path(n, '/')});
+          var node=$('.jstree' + el.id).jstree("get_selected", true);
+          var nodes=node.map(function(n){return $('.jstree' + el.id).jstree().get_path(n, '/')});
         
           if(typeof(Shiny) !== "undefined"){
               Shiny.onInputChange(el.id + "_update",{
@@ -144,35 +144,35 @@ HTMLWidgets.widget({
 })
         .on("loaded.jstree", function(ev,data) {
           
-          $('.jstree').jstree('select_node', x.openwith);
+          $('.jstree' + el.id).jstree('select_node', x.openwith);
 });
 
       //enable the search and attach to tree
         function search(){
           var str = $(".q" + el.id).val();
-          $('.jstree').jstree(true).search(str);    
+          $('.jstree' + el.id).jstree(true).search(str);    
       }
        
         $(".q" + el.id).on('keyup.ns.search', search);
         $(".s").submit(function(e) {
           e.preventDefault();
-          $('.jstree').jstree(true).search($(".q" + el.id).val());
+          $('.jstree' + el.id).jstree(true).search($(".q" + el.id).val());
         });
     
       //attach funtion of expand and collapse to buttons
         $('.expand' + el.id).bind("click", function() {
-            $('.jstree').jstree("open_all");
+            $('.jstree' + el.id).jstree("open_all");
     });
         $('.toCollapse' + el.id).bind("click", function() {
-            $('.jstree').jstree("close_all");
+            $('.jstree' + el.id).jstree("close_all");
         });
       
       //attach get function to preview button
     $(".get" + el.id).click(function() {
-      var node=$('.jstree').jstree("get_selected", true);
+      var node=$('.jstree' + el.id).jstree("get_selected", true);
         if(x.uri&&x.vcs!='svn'){
-          var root_text=$('.jstree').jstree(true).get_node('ul > li:first').text;
-          pathtofile=$('.jstree').jstree().get_path(node[0], '/').replace(root_text,'');
+          var root_text=$('.jstree' + el.id).jstree(true).get_node('ul > li:first').text;
+          pathtofile=$('.jstree' + el.id).jstree().get_path(node[0], '/').replace(root_text,'');
           previewDiv.appendChild(previewPre);
           container.appendChild(previewDiv);
           el.appendChild(container);
@@ -209,7 +209,7 @@ HTMLWidgets.widget({
 
       //custom menu function (http://jsfiddle.net/dpzy8xjb/)
         function customMenu(node) {
-          var tree = $('.jstree').jstree(true);
+          var tree = $('.jstree' + el.id).jstree(true);
           var ID = $(node).attr('id');
           if (ID == "j1_1") {
               return items = {};
@@ -229,7 +229,7 @@ HTMLWidgets.widget({
                     "label": previewFile,
                     "action": function(obj){
                       if(x.uri&&x.vcs!='svn'){
-                              var root_text=$('.jstree').jstree(true).get_node('ul > li:first').text;
+                              var root_text=$('.jstree' + el.id).jstree(true).get_node('ul > li:first').text;
                               var pathtofile=tree.get_path($(node)[0], '/').replace(root_text,'');
                               
                               var uri=x.uri + pathtofile + '?raw=true';

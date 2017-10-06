@@ -1,0 +1,55 @@
+---
+title: "jsTree"
+author: "Jonathan Sidi"
+date: "October 5, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R markdown document showing functionality of jsTree
+
+```{r}
+library(jsTree)
+data(states)
+data(state_bird)
+```
+
+collapse columns to text (with sep "/")
+
+```{r}
+nested_string <- apply(states,1,paste,collapse='/')
+jsTree(nested_string)
+```
+
+Add tooltips to state names with the state bird
+```{r}
+jsTree(nested_string,tooltips = state_bird)
+```
+
+initialize tree with checked boxes for certain fields
+```{r}
+nodestate1 <- states$variable=='Area'
+jsTree(nested_string,nodestate=nodestate1)
+```
+
+```{r}
+nodestate2 <- states$variable=='Area'&grepl('^M',states$state.name)
+jsTree(nested_string,nodestate=nodestate2)
+```
+
+```{r}
+nodestate3 <- states$variable %in% c('Murder') & states$value >= 10
+nodestate4 <- states$variable %in% c('HS.Grad') & states$value <= 55
+jsTree(nested_string,nodestate=nodestate3|nodestate4)
+```
+
+change the order of the hierarchy
+```{r}
+nested_string2 <- apply(states[,c(4,1,2,3,5)],1,paste,collapse='/')
+jsTree(nested_string2)
+```
