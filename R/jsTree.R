@@ -71,8 +71,13 @@ jsTree <- function(obj, tooltips=NULL, nodestate=NULL, ... , width = NULL, heigh
   if(!'vcs'%in%names(match.call())) vcs <- 'github'
   if(!'remote_branch'%in%names(match.call())) remote_branch <- 'master'
   
-  obj.in <- nest(l         = obj,
-               root      = ifelse(!is.null(remote_repo),ifelse(vcs=='svn',remote_repo,paste(remote_repo,remote_branch,sep='/')),'.'),
+  obj.in <- nest(l       = obj,
+               root      = ifelse(!is.null(remote_repo),
+                                  ifelse(vcs=='svn',
+                                         remote_repo,
+                                         paste(remote_repo,remote_branch,sep='/')
+                                         ),
+                                  '.'),
                nodestate = nodestate,
                tooltips  = tooltips
                )

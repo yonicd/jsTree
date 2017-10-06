@@ -231,14 +231,15 @@ HTMLWidgets.widget({
                       if(x.uri&&x.vcs!='svn'){
                               var root_text=$('.jstree' + el.id).jstree(true).get_node('ul > li:first').text;
                               var pathtofile=tree.get_path($(node)[0], '/').replace(root_text,'');
-                              
-                              var uri=x.uri + pathtofile + '?raw=true';
-                              textP.nodeValue=uri;
-                              
+
                               previewDiv.appendChild(previewPre);
                               container.appendChild(previewDiv);
                               el.appendChild(container);
                               
+                              var uri=x.uri + pathtofile + '?raw=true';
+                              textP.nodeValue=uri;
+                              $('.qprev'+el.id).on("input",mark);
+
                               loadXMLDoc(uri,previewCallback);
                             }
                     }
