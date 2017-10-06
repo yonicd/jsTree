@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 Miscellaneous
 data-raw
+^cran-comments\.md$
