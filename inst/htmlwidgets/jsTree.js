@@ -103,29 +103,12 @@ HTMLWidgets.widget({
           'data' : x.data
       },
       'contextmenu': {'items': customMenu},
-      'plugins': treePlugins
+      'plugins': treePlugins,
+      'search': {
+            "case_sensitive": false,
+            "show_only_matches": false
+       }
       })
-        .on("search.jstree", function(ev, data) { //http://jsfiddle.net/2kwkh2uL/2188/
-          data.nodes.children("a").each(function (idx, node) {
-          var h = node.innerHTML;        
-          var orig = $('.jstree' + el.id).jstree(true).get_node(node).text;
-          var txt = orig.replace(new RegExp("(" + data.str + ")", "gi"), function(a,b){
-            //debugger;
-              return '<span style="color:green">' + b + '</span>';
-          });
-          node.innerHTML = h.replace(new RegExp(orig, 'gi'), txt);
-      });
-})
-        .on("clear_search.jstree", function(ev, data) {
-            $.each(data.nodes, function (idx, node) {
-                var h = node.innerHTML;
-                var orig = $('.jstree' + el.id).jstree(true).get_node(node.id).text;
-                h = h.replace(new RegExp('<span style="color:green">(.*)</span>', 'gi'),     function (a, b) {
-                    return b; 
-                });
-                node.innerHTML = h;
-            });
-})
         .on("changed.jstree", function(ev, data) {
         
           //var i, j, nodes = [];
@@ -141,34 +124,28 @@ HTMLWidgets.widget({
               });
           }
            
-})
+          })
         .on("loaded.jstree", function(ev,data) {
           
           $('.jstree' + el.id).jstree('select_node', x.openwith);
-});
+          });
 
-      //enable the search and attach to tree
-        function search(){
-          var str = $(".q" + el.id).val();
-          $('.jstree' + el.id).jstree(true).search(str);    
-      }
-       
-        $(".q" + el.id).on('keyup.ns.search', search);
-        $(".s").submit(function(e) {
-          e.preventDefault();
-          $('.jstree' + el.id).jstree(true).search($(".q" + el.id).val());
+      //attach search function to tree
+        $('.q' + el.id).keyup(function () {
+                var searchString = $(this).val();
+                $('.jstree' + el.id).jstree('search', searchString);
         });
-    
-      //attach funtion of expand and collapse to buttons
+
+      //attach function of expand and collapse to buttons
         $('.expand' + el.id).bind("click", function() {
             $('.jstree' + el.id).jstree("open_all");
-    });
+        });
         $('.toCollapse' + el.id).bind("click", function() {
             $('.jstree' + el.id).jstree("close_all");
         });
       
       //attach get function to preview button
-    $(".get" + el.id).click(function() {
+        $(".get" + el.id).click(function() {
       var node=$('.jstree' + el.id).jstree("get_selected", true);
         if(x.uri&&x.vcs!='svn'){
           var root_text=$('.jstree' + el.id).jstree(true).get_node('ul > li:first').text;
@@ -185,8 +162,8 @@ HTMLWidgets.widget({
         }
             
       });
-      
-        function previewCallback(data){
+
+    function previewCallback(data){
       document.getElementById("preview" + el.id).innerHTML = data;
       if(x.forcekey){
         $('.qprev'+el.id).val(x.forcekey);
@@ -249,7 +226,7 @@ HTMLWidgets.widget({
           return items;
     }
 
-  var mark = function() {
+        var mark = function() {
     // Read the keyword
     var keyword = $('.qprev'+el.id).val();
     // Determine selected options
