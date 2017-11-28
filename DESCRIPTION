@@ -1,7 +1,7 @@
 Package: jsTree
 Title: Create Interactive Trees with the 'jQuery' 'jsTree' Plugin
-Version: 1.0.1
-Date: 2017-10-23
+Version: 1.0.2
+Date: 2017-11-28
 Authors@R: person("Jonathan", "Sidi", email = "yonis@metrumrg.com", role = c("aut", "cre"))
 Maintainer: Jonathan Sidi <yonis@metrumrg.com>
 Description: Create and customize interactive trees using the 'jQuery' 'jsTree' <https://www.jstree.com/>
@@ -14,4 +14,4 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/metrumresearchgroup/jsTree
 BugReports: https://github.com/metrumresearchgroup/jsTree/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000
