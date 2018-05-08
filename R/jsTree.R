@@ -9,6 +9,7 @@
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
 #' @param elementId The input slot that will be used to access the element.
+#' @param sep The separator for \code{'obj'} which indicates the hierarchy. Default to \code{'/'}.
 #' @details 
 #' 
 #' valid core objects can be found in the jsTree javascript library api

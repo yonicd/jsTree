@@ -5,7 +5,7 @@
 \title{Htmlwidget for the jsTree Javascript library}
 \usage{
 jsTree(obj, core = NULL, tooltips = NULL, nodestate = NULL, ...,
-  width = NULL, height = NULL, elementId = NULL)
+  width = NULL, height = NULL, elementId = NULL, sep = "/")
 }
 \arguments{
 \item{obj}{character, vector of directory tree}
@@ -23,6 +23,8 @@ jsTree(obj, core = NULL, tooltips = NULL, nodestate = NULL, ...,
 string and have \code{'px'} appended.}
 
 \item{elementId}{The input slot that will be used to access the element.}
+
+\item{sep}{The separator for \code{'obj'} which indicates the hierarchy. Default to \code{'/'}.}
 }
 \description{
 Htmlwidget for the jsTree Javascript library
