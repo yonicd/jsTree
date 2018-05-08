@@ -83,7 +83,7 @@
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
 #' @export
-jsTree <- function(obj, core=NULL, tooltips=NULL, nodestate=NULL, ... , width = NULL, height = NULL, elementId = NULL) {
+jsTree <- function(obj, core=NULL, tooltips=NULL, nodestate=NULL, ... , width = NULL, height = NULL, elementId = NULL, sep = '/') {
 
   preview.search <- NULL
   
@@ -101,7 +101,8 @@ jsTree <- function(obj, core=NULL, tooltips=NULL, nodestate=NULL, ... , width = 
                                          ),
                                   '.'),
                nodestate = nodestate,
-               tooltips  = tooltips
+               tooltips  = tooltips,
+               sep = sep
                )
   
   # forward options using x
