@@ -119,8 +119,6 @@ jsTree <- function(obj, sep = '/', core=NULL, tooltips=NULL, nodestate=NULL, ...
                  )
   }
 
-
-  x$sep=sep
   
   # create widget
   htmlwidgets::createWidget(

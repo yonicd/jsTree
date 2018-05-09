@@ -115,7 +115,7 @@ HTMLWidgets.widget({
           //    nodes.push(data.instance.get_node(data.selected[i]).text);
           //}
           var node=$('.jstree' + el.id).jstree("get_selected", true);
-          var nodes=node.map(function(n){return $('.jstree' + el.id).jstree().get_path(n, '/')});
+          var nodes=node.map(function(n){return $('.jstree' + el.id).jstree().get_path(n, x.sep)});
         
           if(typeof(Shiny) !== "undefined"){
               Shiny.onInputChange(el.id + "_update",{
