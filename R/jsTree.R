@@ -86,6 +86,7 @@
 #' 
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
+#' @importFrom htmltools save_html browsable
 #' @export
 jsTree <- function(obj, 
                    sep = '/',
@@ -150,7 +151,7 @@ jsTree <- function(obj,
     elementId = elementId
   )
   
-  htmltools::save_html(w, file)
+  htmltools::save_html(htmltools::browsable(w), file)
   
   viewer <- getOption("viewer", utils::browseURL)
   

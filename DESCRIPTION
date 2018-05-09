@@ -9,7 +9,7 @@ Description: Create and customize interactive trees using the 'jQuery' 'jsTree' 
     plugin library and the 'htmlwidgets' package. These trees can be used
     directly from the R console, from 'RStudio', in Shiny apps and R Markdown documents.
 Depends: R (>= 2.10)
-Imports: htmlwidgets,jsonlite,data.table
+Imports: htmlwidgets,jsonlite,htmltools,data.table
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

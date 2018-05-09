@@ -1,7 +1,8 @@
 library(jsTree)
+library(testthat)
 
 testthat::test_that('nesting default',{
-  
+
   x <- 'a/b/c'
   
   ret <- jsTree:::nest(x)
