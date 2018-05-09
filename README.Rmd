@@ -1,75 +1,79 @@
+---
+output: github_document
+always_allow_html: yes
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "tools/readme/README-",
+  echo = TRUE
+)
+```
+
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/jsTree)](https://cran.r-project.org/package=jsTree)
-[![Project Status: Active - The project has reached a stable, usable
-state and is being actively
-developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
-![downloads](http://cranlogs.r-pkg.org/badges/jsTree)[![Travis-CI Build
-Status](https://travis-ci.org/metrumresearchgroup/jsTree.svg?branch=master)](https://travis-ci.org/metrumresearchgroup/jsTree)[![Coverage
-Status](https://img.shields.io/codecov/c/github/metrumresearchgroup/jsTree/master.svg)](https://codecov.io/github/metrumresearchgroup/jsTree?branch=master)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) 
+![downloads](http://cranlogs.r-pkg.org/badges/jsTree)[![Travis-CI Build Status](https://travis-ci.org/metrumresearchgroup/jsTree.svg?branch=master)](https://travis-ci.org/metrumresearchgroup/jsTree)[![Coverage Status](https://img.shields.io/codecov/c/github/metrumresearchgroup/jsTree/master.svg)](https://codecov.io/github/metrumresearchgroup/jsTree?branch=master)
 
 # jsTree
 
-`R` htmlwidget for inspecting heirachal structures with the ‘jQuery’
-‘jsTree’ Plugin.
+`R` htmlwidget for inspecting heirachal structures with the 'jQuery' 'jsTree' Plugin.
 
 ## Installation
 
-``` r
+```{r,eval = FALSE}
 #install.packages('jsTree')
 remotes::install_github('metrumresearchgroup/jsTree')
 ```
 
 ## Conventional Use
 
-``` r
+```{r}
 library(jsTree)
 data(states)
 data(state_bird)
 ```
 
-collapse columns to text (with sep “/”)
+collapse columns to text (with sep "/")
 
-``` r
+```{r}
 nested_string <- apply(states,1,paste,collapse='/')
 jsTree(nested_string)
 ```
 
 Add tooltips to state names with the state bird
-
-``` r
+```{r}
 jsTree(nested_string,tooltips = state_bird)
 ```
 
 initialize tree with checked boxes for certain fields
-
-``` r
+```{r}
 nodestate1 <- states$variable=='Area'
 jsTree(nested_string,nodestate=nodestate1)
 ```
 
-``` r
+```{r}
 nodestate2 <- states$variable=='Area'&grepl('^M',states$state.name)
 jsTree(nested_string,nodestate=nodestate2)
 ```
 
-``` r
+```{r}
 nodestate3 <- states$variable %in% c('Murder') & states$value >= 10
 nodestate4 <- states$variable %in% c('HS.Grad') & states$value <= 55
 jsTree(nested_string,nodestate=nodestate3|nodestate4)
 ```
 
 change the order of the hierarchy
-
-``` r
+```{r}
 nested_string2 <- apply(states[,c(4,1,2,3,5)],1,paste,collapse='/')
 jsTree(nested_string2)
 ```
 
 Use other delimiters to define the heirarchy
-
-``` r
+```{r}
 nested_string <- apply(states,1,paste,collapse='|-|')
 jsTree(nested_string,sep = '|-|')
 ```
@@ -78,7 +82,7 @@ jsTree(nested_string,sep = '|-|')
 
 ### Preview a github repo without cloning it
 
-``` r
+```r
 remotes::install_github('metrumresearchgroup/vcs')
 
 #get repo master branch directory structure
