@@ -11,6 +11,8 @@
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
 #' @param elementId The input slot that will be used to access the element.
+#' @param file character, html filename to save output to.
+#' @param browse whether to open a browser to view the html
 #' @details 
 #' 
 #' valid core objects can be found in the jsTree javascript library api
@@ -85,7 +87,18 @@
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
 #' @export
-jsTree <- function(obj, sep = '/',sep_fixed = TRUE, core=NULL, tooltips=NULL, nodestate=NULL, ... , width = NULL, height = NULL, elementId = NULL) {
+jsTree <- function(obj, 
+                   sep = '/',
+                   sep_fixed = TRUE, 
+                   core=NULL,
+                   tooltips=NULL, 
+                   nodestate=NULL, 
+                   ... , 
+                   width = NULL, 
+                   height = NULL, 
+                   elementId = NULL,
+                   file = tempfile(pattern = 'jstree-',fileext = '.html'),
+                   browse = interactive()) {
 
   preview.search <- NULL
   
@@ -96,41 +109,57 @@ jsTree <- function(obj, sep = '/',sep_fixed = TRUE, core=NULL, tooltips=NULL, no
   if(!'remote_branch'%in%names(match.call())) remote_branch <- 'master'
   
   obj.in <- nest(l       = obj,
-               root      = ifelse(!is.null(remote_repo),
-                                  ifelse(vcs=='svn',
-                                         remote_repo,
-                                         paste(remote_repo,remote_branch,sep='/')
-                                         ),
-                                  '.'),
-               nodestate = nodestate,
-               tooltips  = tooltips,
-               sep = sep,
-               sep_fixed = sep_fixed
-               )
+                 root      = ifelse(!is.null(remote_repo),
+                                    ifelse(vcs=='svn',
+                                           remote_repo,
+                                           paste(remote_repo,remote_branch,sep='/')
+                                           ),
+                                    '.'),
+                 nodestate = nodestate,
+                 tooltips  = tooltips,
+                 sep = sep,
+                 sep_fixed = sep_fixed
+                 )
   
   # forward options using x
   x <- list(core = jsonlite::toJSON(c(list(data=obj.in),core),auto_unbox = TRUE),
-            vcs = vcs, sep=sep)
+            vcs  = vcs, 
+            sep  = sep)
   
-  if( 'preview.search'%in%names(match.call()) ) x$forcekey <- preview.search
+  if( 'preview.search'%in%names(match.call()) ) {
+      x$forcekey <- preview.search
+    }
   
   if( !is.null(remote_repo) ){
+    
     x$uri <- switch(vcs,
-                 github=sprintf('https://raw.githubusercontent.com/%s/%s',remote_repo,remote_branch),
-                 bitbucket=sprintf('https://bitbucket.org/%s/raw/%s',remote_repo,remote_branch)
-                 )
+                     github = sprintf('https://raw.githubusercontent.com/%s/%s',remote_repo,remote_branch),
+                     bitbucket = sprintf('https://bitbucket.org/%s/raw/%s',remote_repo,remote_branch)
+                   )
+    
   }
 
   
   # create widget
-  htmlwidgets::createWidget(
-    name = 'jsTree',
+  w <- htmlwidgets::createWidget(
+    name      = 'jsTree',
     x,
-    width = width,
-    height = height,
-    package = 'jsTree',
+    width     = width,
+    height    = height,
+    package   = 'jsTree',
     elementId = elementId
   )
+  
+  htmltools::save_html(w, file)
+  
+  viewer <- getOption("viewer", utils::browseURL)
+  
+  if (browse) {
+    viewer(file)
+  }
+  
+  invisible(file)
+  
 }
 
 #' Shiny bindings for jsTree

@@ -5,7 +5,9 @@
 \title{Htmlwidget for the jsTree Javascript library}
 \usage{
 jsTree(obj, sep = "/", sep_fixed = TRUE, core = NULL, tooltips = NULL,
-  nodestate = NULL, ..., width = NULL, height = NULL, elementId = NULL)
+  nodestate = NULL, ..., width = NULL, height = NULL, elementId = NULL,
+  file = tempfile(pattern = "jstree-", fileext = ".html"),
+  browse = interactive())
 }
 \arguments{
 \item{obj}{character, vector of directory tree}
@@ -27,6 +29,10 @@ jsTree(obj, sep = "/", sep_fixed = TRUE, core = NULL, tooltips = NULL,
 string and have \code{'px'} appended.}
 
 \item{elementId}{The input slot that will be used to access the element.}
+
+\item{file}{character, html filename to save output to.}
+
+\item{browse}{whether to open a browser to view the html}
 }
 \description{
 Htmlwidget for the jsTree Javascript library
