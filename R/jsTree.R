@@ -9,7 +9,7 @@
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
 #' @param elementId The input slot that will be used to access the element.
-#' @param sep The separator for \code{'obj'} which indicates the hierarchy. Default to \code{'/'}.
+#' @param sep character, separator for \code{'obj'} which defines the hierarchy, Default: \code{'/'}.
 #' @details 
 #' 
 #' valid core objects can be found in the jsTree javascript library api
@@ -84,7 +84,7 @@
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
 #' @export
-jsTree <- function(obj, core=NULL, tooltips=NULL, nodestate=NULL, ... , width = NULL, height = NULL, elementId = NULL, sep = '/') {
+jsTree <- function(obj, sep = '/', core=NULL, tooltips=NULL, nodestate=NULL, ... , width = NULL, height = NULL, elementId = NULL) {
 
   preview.search <- NULL
   
@@ -108,7 +108,7 @@ jsTree <- function(obj, core=NULL, tooltips=NULL, nodestate=NULL, ... , width = 
   
   # forward options using x
   x <- list(core = jsonlite::toJSON(c(list(data=obj.in),core),auto_unbox = TRUE),
-            vcs = vcs)
+            vcs = vcs, sep=sep)
   
   if( 'preview.search'%in%names(match.call()) ) x$forcekey <- preview.search
   
@@ -120,6 +120,8 @@ jsTree <- function(obj, core=NULL, tooltips=NULL, nodestate=NULL, ... , width = 
   }
 
 
+  x$sep=sep
+  
   # create widget
   htmlwidgets::createWidget(
     name = 'jsTree',
