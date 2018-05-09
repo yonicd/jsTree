@@ -1,7 +1,7 @@
 ---
 title: "jsTree"
 author: "Jonathan Sidi"
-date: "October 5, 2017"
+date: "May 9, 2018"
 output: html_document
 ---
 
@@ -52,4 +52,10 @@ change the order of the hierarchy
 ```{r}
 nested_string2 <- apply(states[,c(4,1,2,3,5)],1,paste,collapse='/')
 jsTree(nested_string2)
+```
+
+Use other delimiters to define the heirarchy
+```{r}
+nested_string <- apply(states,1,paste,collapse='|-|')
+jsTree(nested_string,sep = '|-|')
 ```

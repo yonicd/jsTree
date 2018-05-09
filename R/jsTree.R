@@ -1,6 +1,8 @@
 #' @title Htmlwidget for the jsTree Javascript library
 #' @description Htmlwidget for the jsTree Javascript library
 #' @param obj character, vector of directory tree
+#' @param sep character, separator for \code{'obj'} which defines the hierarchy, Default: \code{'/'}.
+#' @param sep_fixed boolean, to treat the sep character(s) as fixed when seperating, Default: TRUE.
 #' @param core list, additional parameters to pass to core of jsTree, default: NULL
 #' @param tooltips character, named vector of tooltips for elements in the tree, Default: NULL
 #' @param nodestate boolean, vector the length of obj that initializes tree open to true values, Default: NULL
@@ -9,7 +11,6 @@
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
 #' @param elementId The input slot that will be used to access the element.
-#' @param sep character, separator for \code{'obj'} which defines the hierarchy, Default: \code{'/'}.
 #' @details 
 #' 
 #' valid core objects can be found in the jsTree javascript library api
@@ -84,7 +85,7 @@
 #' @import htmlwidgets
 #' @importFrom jsonlite toJSON
 #' @export
-jsTree <- function(obj, sep = '/', core=NULL, tooltips=NULL, nodestate=NULL, ... , width = NULL, height = NULL, elementId = NULL) {
+jsTree <- function(obj, sep = '/',sep_fixed = TRUE, core=NULL, tooltips=NULL, nodestate=NULL, ... , width = NULL, height = NULL, elementId = NULL) {
 
   preview.search <- NULL
   
@@ -103,7 +104,8 @@ jsTree <- function(obj, sep = '/', core=NULL, tooltips=NULL, nodestate=NULL, ...
                                   '.'),
                nodestate = nodestate,
                tooltips  = tooltips,
-               sep = sep
+               sep = sep,
+               sep_fixed = sep_fixed
                )
   
   # forward options using x

@@ -52,10 +52,10 @@ makeList <- function(x,tooltips){
 }
 
 #' @importFrom data.table rbindlist
-nest <- function(l, root='root', nodestate=NULL, tooltips=NA, sep='/'){
+nest <- function(l, root='root', nodestate=NULL, tooltips=NA, sep='/',sep_fixed = TRUE){
   
   df <- data.frame(V0=root,
-                   data.table::rbindlist(lapply(strsplit(l,sep),
+                   data.table::rbindlist(lapply(strsplit(l,sep,fixed=sep_fixed),
                                      function(x) as.data.frame(t(x),stringsAsFactors = FALSE)),
                                     fill=TRUE),
              stringsAsFactors = FALSE)
