@@ -36,11 +36,15 @@ nested_string <- apply(states,1,paste,collapse='/')
 jsTree(nested_string)
 ```
 
+![](tools/readme/README-unnamed-chunk-4-1.png)<!-- -->
+
 Add tooltips to state names with the state bird
 
 ``` r
 jsTree(nested_string,tooltips = state_bird)
 ```
+
+![](tools/readme/README-unnamed-chunk-5-1.png)<!-- -->
 
 initialize tree with checked boxes for certain fields
 
@@ -49,16 +53,22 @@ nodestate1 <- states$variable=='Area'
 jsTree(nested_string,nodestate=nodestate1)
 ```
 
+![](tools/readme/README-unnamed-chunk-6-1.png)<!-- -->
+
 ``` r
 nodestate2 <- states$variable=='Area'&grepl('^M',states$state.name)
 jsTree(nested_string,nodestate=nodestate2)
 ```
+
+![](tools/readme/README-unnamed-chunk-7-1.png)<!-- -->
 
 ``` r
 nodestate3 <- states$variable %in% c('Murder') & states$value >= 10
 nodestate4 <- states$variable %in% c('HS.Grad') & states$value <= 55
 jsTree(nested_string,nodestate=nodestate3|nodestate4)
 ```
+
+![](tools/readme/README-unnamed-chunk-8-1.png)<!-- -->
 
 change the order of the hierarchy
 
@@ -67,12 +77,16 @@ nested_string2 <- apply(states[,c(4,1,2,3,5)],1,paste,collapse='/')
 jsTree(nested_string2)
 ```
 
+![](tools/readme/README-unnamed-chunk-9-1.png)<!-- -->
+
 Use other delimiters to define the heirarchy
 
 ``` r
 nested_string <- apply(states,1,paste,collapse='|-|')
 jsTree(nested_string,sep = '|-|')
 ```
+
+![](tools/readme/README-unnamed-chunk-10-1.png)<!-- -->
 
 ## Interacting with remote repositories
 

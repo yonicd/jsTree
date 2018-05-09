@@ -11,8 +11,9 @@
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
 #' @param elementId The input slot that will be used to access the element.
-#' @param file character, html filename to save output to.
-#' @param browse whether to open a browser to view the html
+#' @param file character, html filename to save output to,
+#' Default: tempfile(pattern = 'jstree-',fileext = '.html').
+#' @param browse whether to open a browser to view the html, Default: TRUE
 #' @details 
 #' 
 #' valid core objects can be found in the jsTree javascript library api
@@ -99,7 +100,7 @@ jsTree <- function(obj,
                    height = NULL, 
                    elementId = NULL,
                    file = tempfile(pattern = 'jstree-',fileext = '.html'),
-                   browse = interactive()) {
+                   browse = TRUE) {
 
   preview.search <- NULL
   
@@ -151,15 +152,12 @@ jsTree <- function(obj,
     elementId = elementId
   )
   
-  htmltools::save_html(htmltools::browsable(w), file)
-  
-  viewer <- getOption("viewer", utils::browseURL)
-  
   if (browse) {
-    viewer(file)
+    w
+  }else{
+    htmltools::save_html(htmltools::browsable(w), file)
+    invisible(file)  
   }
-  
-  invisible(file)
   
 }
 

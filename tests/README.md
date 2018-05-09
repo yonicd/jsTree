@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-09 May, 2018 09:02:54
+09 May, 2018 18:33:13
 
 This output is created by
 [covrpage](https://github.com/yonicd/covrpage).
@@ -26,12 +26,12 @@ package.
 
 | file                                | n |  time | error | failed | skipped | warning |
 | :---------------------------------- | -: | ----: | ----: | -----: | ------: | ------: |
-| [test-html.R](testthat/test-html.R) | 1 | 0.201 |     0 |      0 |       0 |       0 |
-| [test-nest.R](testthat/test-nest.R) | 5 | 0.034 |     0 |      0 |       0 |       0 |
+| [test-html.R](testthat/test-html.R) | 1 | 0.309 |     0 |      0 |       0 |       0 |
+| [test-nest.R](testthat/test-nest.R) | 5 | 0.069 |     0 |      0 |       0 |       0 |
 
 | file                                | test                  | context | status | n |  time |
 | :---------------------------------- | :-------------------- | :------ | :----- | -: | ----: |
-| [test-html.R](testthat/test-html.R) | tree html             |         | PASS   | 1 | 0.201 |
-| [test-nest.R](testthat/test-nest.R) | nesting default       |         | PASS   | 1 | 0.011 |
-| [test-nest.R](testthat/test-nest.R) | nesting different sep |         | PASS   | 2 | 0.014 |
-| [test-nest.R](testthat/test-nest.R) | nesting nodestate     |         | PASS   | 2 | 0.009 |
+| [test-html.R](testthat/test-html.R) | tree html             |         | PASS   | 1 | 0.309 |
+| [test-nest.R](testthat/test-nest.R) | nesting default       |         | PASS   | 1 | 0.008 |
+| [test-nest.R](testthat/test-nest.R) | nesting different sep |         | PASS   | 2 | 0.051 |
+| [test-nest.R](testthat/test-nest.R) | nesting nodestate     |         | PASS   | 2 | 0.010 |
