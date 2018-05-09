@@ -74,7 +74,7 @@ nested_string <- apply(states,1,paste,collapse='|-|')
 jsTree(nested_string,sep = '|-|')
 ```
 
-## Interacting with remote Repositories
+## Interacting with remote repositories
 
 ### Preview a github repo without cloning it
 
