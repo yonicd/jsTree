@@ -74,5 +74,10 @@ nest <- function(l, root='root', nodestate=NULL, tooltips=NA, sep='/',sep_fixed 
   
   if(all(df[,1]==df[,2])) df[,2] <- NULL
   
-  makeList(df,tooltips)
+  ret <- makeList(df,tooltips)
+  
+  if(ret[[1]]$text=='.')
+    ret <- ret[[1]]$children
+  
+  ret
 } 

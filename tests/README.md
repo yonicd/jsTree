@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-09 May, 2018 18:33:13
+10 May, 2018 09:21:59
 
 This output is created by
 [covrpage](https://github.com/yonicd/covrpage).
@@ -12,9 +12,9 @@ Coverage summary is created using the
 
 | Object                          | Coverage (%) |
 | :------------------------------ | :----------: |
-| jsTree                          |    88.50     |
+| jsTree                          |    88.79     |
 | [R/jsTree.R](../R/jsTree.R)     |    81.25     |
-| [R/makelist.R](../R/makelist.R) |    93.85     |
+| [R/makelist.R](../R/makelist.R) |    94.12     |
 
 <br>
 
@@ -26,12 +26,12 @@ package.
 
 | file                                | n |  time | error | failed | skipped | warning |
 | :---------------------------------- | -: | ----: | ----: | -----: | ------: | ------: |
-| [test-html.R](testthat/test-html.R) | 1 | 0.309 |     0 |      0 |       0 |       0 |
-| [test-nest.R](testthat/test-nest.R) | 5 | 0.069 |     0 |      0 |       0 |       0 |
+| [test-html.R](testthat/test-html.R) | 1 | 0.275 |     0 |      0 |       0 |       0 |
+| [test-nest.R](testthat/test-nest.R) | 5 | 0.065 |     0 |      0 |       0 |       0 |
 
 | file                                | test                  | context | status | n |  time |
 | :---------------------------------- | :-------------------- | :------ | :----- | -: | ----: |
-| [test-html.R](testthat/test-html.R) | tree html             |         | PASS   | 1 | 0.309 |
-| [test-nest.R](testthat/test-nest.R) | nesting default       |         | PASS   | 1 | 0.008 |
-| [test-nest.R](testthat/test-nest.R) | nesting different sep |         | PASS   | 2 | 0.051 |
-| [test-nest.R](testthat/test-nest.R) | nesting nodestate     |         | PASS   | 2 | 0.010 |
+| [test-html.R](testthat/test-html.R) | tree html             |         | PASS   | 1 | 0.275 |
+| [test-nest.R](testthat/test-nest.R) | nesting default       |         | PASS   | 1 | 0.015 |
+| [test-nest.R](testthat/test-nest.R) | nesting different sep |         | PASS   | 2 | 0.032 |
+| [test-nest.R](testthat/test-nest.R) | nesting nodestate     |         | PASS   | 2 | 0.018 |
