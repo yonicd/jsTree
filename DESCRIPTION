@@ -1,6 +1,6 @@
 Package: jsTree
 Title: Create Interactive Trees with the 'jQuery' 'jsTree' Plugin
-Version: 1.0.4
+Version: 1.1
 Date: 2018-05-11
 Authors@R: c(person("Jonathan", "Sidi", email = "yonis@metrumrg.com", role = c("aut", "cre")),
              person("Kohleth", "Chia", role = c("ctb")))

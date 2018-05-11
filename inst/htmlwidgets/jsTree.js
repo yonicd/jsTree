@@ -76,44 +76,38 @@ HTMLWidgets.widget({
         previewPre.id         = 'preview' + el.id;
       
       //attach elements to navbar
-                  searchForm.appendChild(searchInput);
-                  expandBtn.appendChild(expandText);
-                  collapseBtn.appendChild(collapseText);
-                  getBtn.appendChild(getText);
-                  btnsDiv.appendChild(expandBtn);
-                  btnsDiv.appendChild(collapseBtn);
+        searchForm.appendChild(searchInput);
+        expandBtn.appendChild(expandText);
+        collapseBtn.appendChild(collapseText);
+        getBtn.appendChild(getText);
+        btnsDiv.appendChild(expandBtn);
+        btnsDiv.appendChild(collapseBtn);
         if(x.uri&&x.vcs!='svn') btnsDiv.appendChild(getBtn);
-                  navBar.appendChild(searchForm);
-                  navBar.appendChild(btnsDiv);
-                  navBar.appendChild(mainDiv);
-                  el.appendChild(navBar);
+        navBar.appendChild(searchForm);
+        navBar.appendChild(btnsDiv);
+        navBar.appendChild(mainDiv);
+        el.appendChild(navBar);
       
       //attach elements to preview container
-                  titleP.appendChild(textP);
-                  previewDiv.appendChild(titleP);
-                  previewDiv.appendChild(searchInputPreview);
+        titleP.appendChild(textP);
+        previewDiv.appendChild(titleP);
+        previewDiv.appendChild(searchInputPreview);
   
       //define the tree plugins
         var treePlugins=['search','checkbox'];
         if(x.uri&&x.vcs!='svn') treePlugins.push('contextmenu');
   
-
       //create the tree    
       var tree = $('.jstree' + el.id).jstree({
         'core' : x.core,
-      'contextmenu': {'items': customMenu},
-      'plugins': treePlugins,
-      'search': {
-            "case_sensitive": false,
-            "show_only_matches": false
+        'contextmenu': {'items': customMenu},
+        'plugins': treePlugins,
+        'search': {
+              "case_sensitive": false,
+              "show_only_matches": false
        }
       })
         .on("changed.jstree", function(ev, data) {
-        
-          //var i, j, nodes = [];
-          //for(i = 0, j = data.selected.length; i < j; i++) {
-          //    nodes.push(data.instance.get_node(data.selected[i]).text);
-          //}
           var node=$('.jstree' + el.id).jstree("get_selected", true);
           var nodes=node.map(function(n){return $('.jstree' + el.id).jstree().get_path(n, x.sep)});
         
@@ -125,14 +119,13 @@ HTMLWidgets.widget({
            
           })
         .on("loaded.jstree", function(ev,data) {
-          
           $('.jstree' + el.id).jstree('select_node', x.openwith);
-          });
+        });
 
       //attach search function to tree
-        $('.q' + el.id).keyup(function () {
-                var searchString = $(this).val();
-                $('.jstree' + el.id).jstree('search', searchString);
+        $('.q' + el.id).keyup(function() {
+          var searchString = $(this).val();
+          $('.jstree' + el.id).jstree('search', searchString);
         });
 
       //attach function of expand and collapse to buttons
@@ -145,31 +138,29 @@ HTMLWidgets.widget({
       
       //attach get function to preview button
         $(".get" + el.id).click(function() {
-      var node=$('.jstree' + el.id).jstree("get_selected", true);
-        if(x.uri&&x.vcs!='svn'){
-          var root_text=$('.jstree' + el.id).jstree(true).get_node('ul > li:first').text;
-          pathtofile=$('.jstree' + el.id).jstree().get_path(node[0], '/').replace(root_text,'');
-          previewDiv.appendChild(previewPre);
-          container.appendChild(previewDiv);
-          el.appendChild(container);
-
-          var uri=x.uri+ pathtofile + '?raw=true';
-          textP.nodeValue=uri;
-          $('.qprev'+el.id).on("input",mark);
-          
-          loadXMLDoc(uri,previewCallback);
-        }
+          var node=$('.jstree' + el.id).jstree("get_selected", true);
+          if(x.uri&&x.vcs!='svn'){
+            var root_text=$('.jstree' + el.id).jstree(true).get_node('ul > li:first').text;
+            pathtofile=$('.jstree' + el.id).jstree().get_path(node[0], '/').replace(root_text,'');
+            previewDiv.appendChild(previewPre);
+            container.appendChild(previewDiv);
+            el.appendChild(container);
+  
+            var uri=x.uri+ pathtofile + '?raw=true';
+            textP.nodeValue=uri;
+            $('.qprev'+el.id).on("input",mark);
             
-      });
+            loadXMLDoc(uri,previewCallback);
+          }
+        });
 
-    function previewCallback(data){
-      document.getElementById("preview" + el.id).innerHTML = data;
-      if(x.forcekey){
-        $('.qprev'+el.id).val(x.forcekey);
-        $('.qprev'+el.id).trigger('input');
+        function previewCallback(data){
+          document.getElementById("preview" + el.id).innerHTML = data;
+          if(x.forcekey){
+            $('.qprev'+el.id).val(x.forcekey);
+            $('.qprev'+el.id).trigger('input');
       }
-      
-    }
+        }
       
       //function to retrieve files from remote addresses
         function loadXMLDoc(uri,callback) {
@@ -223,22 +214,22 @@ HTMLWidgets.widget({
           };
   
           return items;
-    }
+        }
 
         var mark = function() {
-    // Read the keyword
-    var keyword = $('.qprev'+el.id).val();
-    // Determine selected options
-    var options = {"separateWordSearch":true,"diacritics":true,"debug":false};
-
-    // Remove previous marked elements and mark
-    // the new keyword inside the context
-    $('#preview' + el.id).unmark({
-      done: function() {
-        $('#preview' + el.id).mark(keyword,options);
-      }
-    });
-  };
+          // Read the keyword
+          var keyword = $('.qprev'+el.id).val();
+          // Determine selected options
+          var options = {"separateWordSearch":true,"diacritics":true,"debug":false};
+      
+          // Remove previous marked elements and mark
+          // the new keyword inside the context
+          $('#preview' + el.id).unmark({
+            done: function() {
+              $('#preview' + el.id).mark(keyword,options);
+            }
+          });
+        };
 
       },
 
