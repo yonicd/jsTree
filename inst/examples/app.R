@@ -43,10 +43,8 @@ server <- function(input, output,session) {
   
   output$tree <- jsTree::renderJsTree({
     
-    nested_string <- apply(states,1,paste,collapse='/')
-    
-    jsTree(nested_string)
-    
+    jsTree::jsTree$new(states)$show()
+
   })
   
 }

@@ -4,6 +4,7 @@
 #' @param sep character, separator for \code{'obj'} which defines the hierarchy, Default: \code{'/'}.
 #' @param sep_fixed boolean, to treat the sep character(s) as fixed when seperating, Default: TRUE.
 #' @param core list, additional parameters to pass to core of jsTree, default: NULL
+#' @param plugin plugin object, plugin to use in tree, Default = NULL
 #' @param tooltips character, named vector of tooltips for elements in the tree, Default: NULL
 #' @param nodestate boolean, vector the length of obj that initializes tree open to true values, Default: NULL
 #' @param ... parameters that are passed to the vcs package (see details)
@@ -89,18 +90,19 @@
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools save_html browsable
 #' @export
-jsTree <- function(obj, 
-                   sep = '/',
+jsTree_old <- function(obj, 
+                   sep       = '/',
                    sep_fixed = TRUE, 
-                   core=NULL,
-                   tooltips=NULL, 
-                   nodestate=NULL, 
+                   core      = NULL,
+                   plugin    = NULL,
+                   tooltips  = NULL, 
+                   nodestate = NULL, 
                    ... , 
-                   width = NULL, 
-                   height = NULL, 
+                   width     = NULL, 
+                   height    = NULL, 
                    elementId = NULL,
-                   file = tempfile(pattern = 'jstree-',fileext = '.html'),
-                   browse = TRUE) {
+                   file      = tempfile(pattern = 'jstree-',fileext = '.html'),
+                   browse    = TRUE) {
 
   preview.search <- NULL
   
@@ -159,32 +161,4 @@ jsTree <- function(obj,
     invisible(file)  
   }
   
-}
-
-#' Shiny bindings for jsTree
-#'
-#' Output and render functions for using jsTree within Shiny
-#' applications and interactive Rmd documents.
-#'
-#' @param outputId output variable to read from
-#' @param width,height Must be a valid CSS unit (like \code{'100\%'},
-#'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
-#'   string and have \code{'px'} appended.
-#' @param expr An expression that generates a jsTree
-#' @param env The environment in which to evaluate \code{expr}.
-#' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
-#'   is useful if you want to save an expression in a variable.
-#'
-#' @name jsTree-shiny
-#'
-#' @export
-jsTreeOutput <- function(outputId, width = '100%', height = '400px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'jsTree', width, height, package = 'jsTree')
-}
-
-#' @rdname jsTree-shiny
-#' @export
-renderJsTree <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, jsTreeOutput, env, quoted = TRUE)
 }
