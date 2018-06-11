@@ -29,64 +29,88 @@ data(states)
 data(state_bird)
 ```
 
-collapse columns to text (with sep “/”)
+Initialize a new tree
 
 ``` r
-nested_string <- apply(states,1,paste,collapse='/')
-jsTree(nested_string)
+x <- jsTree::jsTree$new()
 ```
 
-![](tools/readme/README-unnamed-chunk-4-1.png)<!-- -->
+Add data
 
-Add tooltips to state names with the state bird
+Data can be a data.frame or a string that is collapse columns to text
+(with seperator). When the data is a data.frame the seperator is
+controlled by `x$sep`.
 
 ``` r
-jsTree(nested_string,tooltips = state_bird)
+x$data  <- states
 ```
 
-![](tools/readme/README-unnamed-chunk-5-1.png)<!-- -->
-
-initialize tree with checked boxes for certain fields
+Initialize a new tree with data
 
 ``` r
-nodestate1 <- states$variable=='Area'
-jsTree(nested_string,nodestate=nodestate1)
+x <- jsTree::jsTree$new(states)
 ```
 
-![](tools/readme/README-unnamed-chunk-6-1.png)<!-- -->
+Invoke the widget
 
 ``` r
-nodestate2 <- states$variable=='Area'&grepl('^M',states$state.name)
-jsTree(nested_string,nodestate=nodestate2)
+x$show()
 ```
 
 ![](tools/readme/README-unnamed-chunk-7-1.png)<!-- -->
 
+Add tooltips to state names with the state bird
+
 ``` r
-nodestate3 <- states$variable %in% c('Murder') & states$value >= 10
-nodestate4 <- states$variable %in% c('HS.Grad') & states$value <= 55
-jsTree(nested_string,nodestate=nodestate3|nodestate4)
+
+x$tooltips <- state_bird
+
+x$show()
 ```
 
 ![](tools/readme/README-unnamed-chunk-8-1.png)<!-- -->
 
-change the order of the hierarchy
+initialize tree with checked boxes for certain fields
 
 ``` r
-nested_string2 <- apply(states[,c(4,1,2,3,5)],1,paste,collapse='/')
-jsTree(nested_string2)
+x$nodestate(variable=='Area')
+x$show()
 ```
 
 ![](tools/readme/README-unnamed-chunk-9-1.png)<!-- -->
 
-Use other delimiters to define the heirarchy
-
 ``` r
-nested_string <- apply(states,1,paste,collapse='|-|')
-jsTree(nested_string,sep = '|-|')
+x$nodestate(variable=='Area'&grepl('^M',state.name))
+x$show()
 ```
 
 ![](tools/readme/README-unnamed-chunk-10-1.png)<!-- -->
+
+Remove node states
+
+``` r
+x$nodestate(NULL)
+```
+
+change the order of the hierarchy
+
+``` r
+#using character object as data
+x$data <- apply(states[,c(4,1,2,3,5)],1,paste,collapse='/')
+x$show()
+```
+
+![](tools/readme/README-unnamed-chunk-12-1.png)<!-- -->
+
+Use other delimiters to define the heirarchy
+
+``` r
+x$data <- states
+x$sep <- '|-|'
+x$show()
+```
+
+![](tools/readme/README-unnamed-chunk-13-1.png)<!-- -->
 
 ## Interacting with remote repositories
 

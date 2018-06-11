@@ -37,45 +37,72 @@ data(states)
 data(state_bird)
 ```
 
-collapse columns to text (with sep "/")
+Initialize a new tree
 
 ```{r}
-nested_string <- apply(states,1,paste,collapse='/')
-jsTree(nested_string)
+x <- jsTree::jsTree$new()
+```
+
+Add data
+
+Data can be a data.frame or a string that is collapse columns to text (with seperator). When the data
+is a data.frame the seperator is controlled by `x$sep`.
+
+```{r}
+x$data  <- states
+```
+
+
+Initialize a new tree with data
+
+```{r}
+x <- jsTree::jsTree$new(states)
+```
+
+Invoke the widget
+
+```{r}
+x$show()
 ```
 
 Add tooltips to state names with the state bird
 ```{r}
-jsTree(nested_string,tooltips = state_bird)
+
+x$tooltips <- state_bird
+
+x$show()
 ```
 
 initialize tree with checked boxes for certain fields
 ```{r}
-nodestate1 <- states$variable=='Area'
-jsTree(nested_string,nodestate=nodestate1)
+x$nodestate(variable=='Area')
+x$show()
 ```
 
 ```{r}
-nodestate2 <- states$variable=='Area'&grepl('^M',states$state.name)
-jsTree(nested_string,nodestate=nodestate2)
+x$nodestate(variable=='Area'&grepl('^M',state.name))
+x$show()
+
 ```
+ 
+Remove node states
 
 ```{r}
-nodestate3 <- states$variable %in% c('Murder') & states$value >= 10
-nodestate4 <- states$variable %in% c('HS.Grad') & states$value <= 55
-jsTree(nested_string,nodestate=nodestate3|nodestate4)
+x$nodestate(NULL)
 ```
 
 change the order of the hierarchy
 ```{r}
-nested_string2 <- apply(states[,c(4,1,2,3,5)],1,paste,collapse='/')
-jsTree(nested_string2)
+#using character object as data
+x$data <- apply(states[,c(4,1,2,3,5)],1,paste,collapse='/')
+x$show()
 ```
 
 Use other delimiters to define the heirarchy
 ```{r}
-nested_string <- apply(states,1,paste,collapse='|-|')
-jsTree(nested_string,sep = '|-|')
+x$data <- states
+x$sep <- '|-|'
+x$show()
 ```
 
 ## Interacting with remote repositories
