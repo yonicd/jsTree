@@ -96,10 +96,14 @@ jsTree <- R6::R6Class("tree",
                          },
                          add_vcs = function(remote_repo,
                                             vcs = 'github',
-                                            remote_branch = 'master'){
+                                            remote_branch = 'master',
+                                            raw_token = NULL){
                            
                            self$vcs <- vcs
                            self$remote_branch <- remote_branch
+                           
+                           if(!is.null(raw_token))
+                            self$raw_token <- raw_token
                            
                            self$root = ifelse(vcs=='svn',
                                   remote_repo,
@@ -107,6 +111,9 @@ jsTree <- R6::R6Class("tree",
                            )
                            
                            self$uri <- switch(vcs,
+                                         ghe    = sprintf('https://ghe.metrumrg.com/raw/%s/%s',
+                                                          remote_repo,
+                                                          remote_branch),
                                          github = sprintf('https://raw.githubusercontent.com/%s/%s',
                                                           remote_repo,
                                                           remote_branch),
@@ -137,6 +144,7 @@ jsTree <- R6::R6Class("tree",
                                        sep = self$sep,
                                        forcekey = self$preview_search,
                                        uri = self$uri,
+                                       raw_token = self$raw_token,
                                        active_plugins = self$active_plugins,
                                        plugins = plugins,
                                        jsplugins = private$jsplugins
@@ -187,6 +195,7 @@ jsTree <- R6::R6Class("tree",
                          vcs = 'github',
                          remote_branch = 'master',
                          uri = NULL,
+                         raw_token = NULL,
                          root = '.'
                        ),
                      private = list(
@@ -222,7 +231,8 @@ jsTree <- R6::R6Class("tree",
                          plugins <- plugins[self$active_plugins]
 
                          for(i in names(plugins)){
-                           for(j in names(plugins[[i]])){
+                           
+                           for(j in seq_along(plugins[[i]])){
 
                              if(inherits(plugins[[i]][[j]],'JS_EVAL')){
                                private$jsplugins[[i]] <- plugins[[i]]

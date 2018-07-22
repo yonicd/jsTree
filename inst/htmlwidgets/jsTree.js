@@ -148,8 +148,12 @@ HTMLWidgets.widget({
           container.appendChild(previewDiv);
           el.appendChild(container);
 
-          var uri = x.uri + pathtofile + '?raw=true';
-          
+          var uri = x.uri + pathtofile + '?raw=true';  
+
+          if(x.vcs=='ghe'){
+            uri = x.uri + pathtofile + '?' + x.raw_token;
+          }
+        
           textP.nodeValue = uri;
           
           $('.qprev'+el.id).on("input",mark);
