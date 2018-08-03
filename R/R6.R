@@ -230,9 +230,10 @@ jsTree <- R6::R6Class("tree",
                          plugins <- plugins[self$active_plugins]
                          
                          for(i in names(plugins)){
-                           print(i)
+
+                           if (j == 'conditionalselect') {print(j)}
                            for(j in seq_along(plugins[[i]])){
-                             print(j)
+    
                              if(inherits(plugins[[i]][[j]],'JS_EVAL')){
                                private$jsplugins[[i]] <- plugins[[i]]
                                plugins[[i]] <- c()
