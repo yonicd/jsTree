@@ -223,17 +223,14 @@ jsTree <- R6::R6Class("tree",
                            stop(sprintf('misspecified plugins: %s', paste(find_bad,collapse = ', ')))
                          
                          plugins <- private$base_plugins
-                         
                          for(nm in names(self$plugins)){
                            plugins[[nm]] <- self$plugins[[nm]]
                          }
                          
                          plugins <- plugins[self$active_plugins]
-
+                         
                          for(i in names(plugins)){
-                           
                            for(j in seq_along(plugins[[i]])){
-
                              if(inherits(plugins[[i]][[j]],'JS_EVAL')){
                                private$jsplugins[[i]] <- plugins[[i]][[j]]
                                plugins[[i]] <- c()
