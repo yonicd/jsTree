@@ -235,9 +235,10 @@ jsTree <- R6::R6Class("tree",
                            for(j in seq_along(plugins[[i]])){
 
                              if(inherits(plugins[[i]][[j]],'JS_EVAL')){
-                               private$jsplugins[[i]] <- plugins[[i]]
+                               private$jsplugins[[i]] <- plugins[[i]][[j]]
                                plugins[[i]] <- c()
                              }
+                             
                             }
                          }
 

@@ -106,7 +106,7 @@ HTMLWidgets.widget({
         'unique'            : jQuery.extend(x.plugins.unique            , x.jsplugins.unique),
         'wholerow'          : jQuery.extend(x.plugins.wholerow          , x.jsplugins.wholerow),
         'changed'           : jQuery.extend(x.plugins.changed           , x.jsplugins.changed),
-        'conditionalselect' : jQuery.extend(x.plugins.conditionalselect , x.jsplugins.conditionalselect)
+        'conditionalselect' : x.jsplugins.conditionalselect
       })
         .on('changed.jstree', function(ev, data) {
           var node=$('.jstree' + el.id).jstree('get_selected', true);
