@@ -1,1 +1,9 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+Miscellaneous
+data-raw
+^cran-comments\.md$
+^\.travis\.yml$
+^codecov\.yml$
+README.Rmd
 ^_pkgdown\.yml$
