@@ -6,3 +6,4 @@ data-raw
 ^\.travis\.yml$
 ^codecov\.yml$
 README.Rmd
+^_pkgdown\.yml$
