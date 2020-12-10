@@ -4,7 +4,9 @@
 \name{state_bird}
 \alias{state_bird}
 \title{Character vector of state birds}
-\format{A character vector of length 50}
+\format{
+A character vector of length 50
+}
 \source{
 \url{https://state.1keydata.com/state-birds.php}
 }
