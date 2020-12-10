@@ -22,7 +22,7 @@ dependencies:
     src: htmlwidgets/lib/font-awesome
     stylesheet: css/font-awesome.css
   - name: jstree
-    version: 3.3.4
+    version: 3.3.10
     src: htmlwidgets/lib/jsTree
     script: jstree.min.js
     stylesheet: themes/default/style.min.css

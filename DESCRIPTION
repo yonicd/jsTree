@@ -1,10 +1,10 @@
 Package: jsTree
 Title: Create Interactive Trees with the 'jQuery' 'jsTree' Plugin
-Version: 1.0.4
-Date: 2018-05-11
-Authors@R: c(person("Jonathan", "Sidi", email = "yonis@metrumrg.com", role = c("aut", "cre")),
+Version: 1.2
+Date: 2020-12-10
+Authors@R: c(person("Jonathan", "Sidi", email = "yonicd@gmail.com.com", role = c("aut", "cre")),
              person("Kohleth", "Chia", role = c("ctb")))
-Maintainer: Jonathan Sidi <yonis@metrumrg.com>
+Maintainer: Jonathan Sidi <yonicd@gmail.com.com>
 Description: Create and customize interactive trees using the 'jQuery' 'jsTree' <https://www.jstree.com/>
     plugin library and the 'htmlwidgets' package. These trees can be used
     directly from the R console, from 'RStudio', in Shiny apps and R Markdown documents.
@@ -15,6 +15,6 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/metrumresearchgroup/jsTree
 BugReports: https://github.com/metrumresearchgroup/jsTree/issues
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 7.1.1
 Suggests: testthat,
     covr

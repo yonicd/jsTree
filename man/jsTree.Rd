@@ -4,9 +4,20 @@
 \alias{jsTree}
 \title{Htmlwidget for the jsTree Javascript library}
 \usage{
-jsTree(obj, sep = "/", sep_fixed = TRUE, core = NULL, tooltips = NULL,
-  nodestate = NULL, ..., width = NULL, height = NULL, elementId = NULL,
-  file = tempfile(pattern = "jstree-", fileext = ".html"), browse = TRUE)
+jsTree(
+  obj,
+  sep = "/",
+  sep_fixed = TRUE,
+  core = NULL,
+  tooltips = NULL,
+  nodestate = NULL,
+  ...,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  file = tempfile(pattern = "jstree-", fileext = ".html"),
+  browse = TRUE
+)
 }
 \arguments{
 \item{obj}{character, vector of directory tree}
