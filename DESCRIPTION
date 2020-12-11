@@ -13,8 +13,8 @@ Imports: htmlwidgets,jsonlite,htmltools,data.table
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/metrumresearchgroup/jsTree
-BugReports: https://github.com/metrumresearchgroup/jsTree/issues
+URL: https://github.com/yonicd/jsTree
+BugReports: https://github.com/yonicd/jsTree/issues
 RoxygenNote: 7.1.1
 Suggests: testthat,
     covr
