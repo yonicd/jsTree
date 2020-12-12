@@ -1,13 +1,17 @@
 Package: jsTree
-Title: Create Interactive Trees with the 'jQuery' 'jsTree' Plugin
+Title: Create Interactive Trees with the 'jQuery' 'jsTree'
+       Plugin
 Version: 1.2
 Date: 2020-12-10
-Authors@R: c(person("Jonathan", "Sidi", email = "yonicd@gmail.com", role = c("aut", "cre")),
-             person("Kohleth", "Chia", role = c("ctb")))
+Authors@R: c(person("Jonathan", "Sidi", email =
+       "yonicd@gmail.com", role = c("aut", "cre")),
+       person("Kohleth", "Chia", role = c("ctb")))
 Maintainer: Jonathan Sidi <yonicd@gmail.com>
-Description: Create and customize interactive trees using the 'jQuery' 'jsTree' <https://www.jstree.com/>
-    plugin library and the 'htmlwidgets' package. These trees can be used
-    directly from the R console, from 'RStudio', in Shiny apps and R Markdown documents.
+Description: Create and customize interactive trees using the
+       'jQuery' 'jsTree' <https://www.jstree.com/> plugin
+       library and the 'htmlwidgets' package. These trees can
+       be used directly from the R console, from 'RStudio', in
+       Shiny apps and R Markdown documents.
 Depends: R (>= 2.10)
 Imports: htmlwidgets,jsonlite,htmltools,data.table
 License: MIT + file LICENSE
@@ -16,5 +20,5 @@ LazyData: true
 URL: https://github.com/yonicd/jsTree
 BugReports: https://github.com/yonicd/jsTree/issues
 RoxygenNote: 7.1.1
-Suggests: testthat,
-    covr
+Suggests: testthat, covr,knitr,rmarkdown
+VignetteBuilder: knitr

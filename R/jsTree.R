@@ -41,7 +41,7 @@
 #' \strong{preview.search} is only relevant for vcs in (github,bitbucket) where file
 #'  previewing is available
 #' 
-#' For more information on the vcs package go to \url{https://github.com/metrumresearchgroup/vcs}
+#' For more information on the vcs package go to \url{https://github.com/yonicd/vcs}
 #' 
 #' @examples
 #' if(interactive()){

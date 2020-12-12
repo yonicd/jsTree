@@ -8,3 +8,4 @@ data-raw
 README.Rmd
 ^_pkgdown\.yml$
 ^CRAN-RELEASE$
+^\.github$

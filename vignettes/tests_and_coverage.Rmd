@@ -1,7 +1,22 @@
-Tests and Coverage
-================
-12 December, 2020 12:22:42
+---
+title: "Tests and Coverage"
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tests and Coverage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
 
+<!--- Placeholder for tests/README.md Do Not Edit--->
 -   [Coverage](#coverage)
 -   [Unit Tests](#unit-tests)
 
@@ -16,8 +31,8 @@ Coverage summary is created using the
 | Object                          | Coverage (%) |
 |:--------------------------------|:------------:|
 | jsTree                          |    80.49     |
-| [R/jsTree.R](../R/jsTree.R)     |    78.57     |
-| [R/makelist.R](../R/makelist.R) |    82.50     |
+| [R/jsTree.R](https://github.com/yonicd/jsTree/tree/master/R/jsTree.R)     |    78.57     |
+| [R/makelist.R](https://github.com/yonicd/jsTree/tree/master/R/makelist.R) |    82.50     |
 
 <br>
 
@@ -28,8 +43,8 @@ Unit Test summary is created using the
 
 | file                                |   n |  time | error | failed | skipped | warning |
 |:------------------------------------|----:|------:|------:|-------:|--------:|--------:|
-| [test-html.R](testthat/test-html.R) |   1 | 0.498 |     0 |      0 |       0 |       0 |
-| [test-nest.R](testthat/test-nest.R) |   5 | 0.019 |     0 |      0 |       0 |       0 |
+| [test-html.R](https://github.com/yonicd/jsTree/tree/master/tests/testthat/test-html.R) |   1 | 0.498 |     0 |      0 |       0 |       0 |
+| [test-nest.R](https://github.com/yonicd/jsTree/tree/master/tests/testthat/test-nest.R) |   5 | 0.019 |     0 |      0 |       0 |       0 |
 
 <details closed>
 <summary>
@@ -38,10 +53,10 @@ Show Detailed Test Results
 
 | file                                    | context | test                  | status |   n |  time |
 |:----------------------------------------|:--------|:----------------------|:-------|----:|------:|
-| [test-html.R](testthat/test-html.R#L10) | html    | tree html             | PASS   |   1 | 0.498 |
-| [test-nest.R](testthat/test-nest.R#L10) | nest    | nesting default       | PASS   |   1 | 0.004 |
-| [test-nest.R](testthat/test-nest.R#L25) | nest    | nesting different sep | PASS   |   2 | 0.008 |
-| [test-nest.R](testthat/test-nest.R#L37) | nest    | nesting nodestate     | PASS   |   2 | 0.007 |
+| [test-html.R](https://github.com/yonicd/jsTree/tree/master/tests/testthat/test-html.R#L10) | html    | tree html             | PASS   |   1 | 0.498 |
+| [test-nest.R](https://github.com/yonicd/jsTree/tree/master/tests/testthat/test-nest.R#L10) | nest    | nesting default       | PASS   |   1 | 0.004 |
+| [test-nest.R](https://github.com/yonicd/jsTree/tree/master/tests/testthat/test-nest.R#L25) | nest    | nesting different sep | PASS   |   2 | 0.008 |
+| [test-nest.R](https://github.com/yonicd/jsTree/tree/master/tests/testthat/test-nest.R#L37) | nest    | nesting nodestate     | PASS   |   2 | 0.007 |
 
 </details>
 <details>
