@@ -1,13 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
 
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/jsTree)](https://cran.r-project.org/package=jsTree)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/0.1.0/active.svg)](https://www.repostatus.org/#active)
-![downloads](http://cranlogs.r-pkg.org/badges/jsTree)[![Travis-CI Build
-Status](https://travis-ci.org/yonicd/jsTree.svg?branch=master)](https://travis-ci.org/yonicd/jsTree)[![Coverage
+![downloads](http://cranlogs.r-pkg.org/badges/jsTree)
+[![R-CMD-check](https://github.com/yonicd/jsTree/workflows/R-CMD-check/badge.svg)](https://github.com/yonicd/jsTree/actions)
+[![pkgdown](https://github.com/yonicd/jsTree/workflows/pkgdown/badge.svg)](https://github.com/yonicd/jsTree/actions)
+[![Coverage
 Status](https://img.shields.io/codecov/c/github/yonicd/jsTree/master.svg)](https://codecov.io/github/yonicd/jsTree?branch=master)
+<!-- badges: end -->
 
 # jsTree
 
