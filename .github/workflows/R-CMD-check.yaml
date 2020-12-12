@@ -88,14 +88,17 @@ jobs:
         shell: Rscript {0}
 
       - name: Install pkgdown
+        if: matrix.os == 'macOS-latest'
         run: |
           install.packages("pkgdown", type = "binary")
         shell: Rscript {0}
 
       - name: Install package
+        if: matrix.os == 'macOS-latest'
         run: R CMD INSTALL .
 
       - name: Deploy package
+        if: matrix.os == 'macOS-latest'
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
