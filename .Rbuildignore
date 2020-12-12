@@ -7,3 +7,4 @@ data-raw
 ^codecov\.yml$
 README.Rmd
 ^_pkgdown\.yml$
+^CRAN-RELEASE$
